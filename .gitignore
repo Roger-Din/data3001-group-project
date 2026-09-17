@@ -21,3 +21,6 @@ __pycache__/
 
 # R session history
 .Rhistory
+
+# Downloaded regional data
+data/regions/*.csv

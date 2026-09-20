@@ -51,33 +51,27 @@ The dataset contains two main levels:
 
 A more detailed explanation of the dataset variables is provided in the variable dictionary.
 
-## 5. Current Practice Region
+## 5. Selected Study Region
 
-The California Current region is currently being used as a practice case for initial data exploration.
+The selected study region is located in the western North Pacific:
 
-The practice region is defined as:
+- Longitude: 142°E to 152°E
+- Latitude: 30°N to 40°N
 
-- Longitude: −130° to −118°
-- Latitude: 30° to 45°
-- Time period: 2020
+The region covers part of the Kuroshio Extension environment, which is characterised by strong currents and substantial spatial and temporal variability.
 
-The initial subset contains:
+The region was selected after comparing several candidate regions using data availability, trajectory continuity, spatial coverage and oceanographic relevance. It provides a suitable setting for short-term drifter trajectory forecasting.
 
-- 5,265 hourly observations
-- 13 distinct drifters
-- 4,787 observations available for sea-surface temperature analysis
 
-This region is currently a practice example and may not become the group’s final study region.
+## 6. Research Direction
 
-## 6. Preliminary Research Directions
+The group has selected Project IV: Predicting Where a Drifter Goes Next.
 
-The group will select a final research question from possible directions such as:
+The project aims to use recent drifter trajectory information to predict future drifter positions and evaluate forecast performance at different prediction horizons.
 
-1. Mean ocean-current speed and direction within a selected region
-2. Seasonal changes in ocean circulation
-3. Spatial and temporal patterns in sea-surface temperature
-4. The relationship between sea-surface temperature and current speed
-5. Differences between drifters with and without an attached drogue
+The current forecasting design considers using 24 hours of historical trajectory information to predict positions up to 72 hours ahead.
+
+Forecasting performance will be compared against simple baseline methods, including persistence and mean-flow advection.
 
 ## 7. Current Progress
 

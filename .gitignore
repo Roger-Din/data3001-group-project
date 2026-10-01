@@ -24,3 +24,14 @@ __pycache__/
 
 # Downloaded regional data
 data/regions/*.csv
+
+# Locally stored research papers
+references/papers/*.pdf
+
+# Local macOS metadata
+.DS_Store
+
+# Large/raw Region A files and generated modelling tables
+/RegionA.csv
+/data/processed/*
+!/data/processed/qc_summary.csv

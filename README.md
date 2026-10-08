@@ -16,11 +16,15 @@ This group project uses hourly observations from the NOAA Global Drifter Program
 
 All analysis, processing outputs and planned model comparisons in this repository use the **24-hour-to-72-hour Region A design**.
 
-## 1. Research question
+## 1. Research questions and objectives
 
-> Given the preceding 24 hourly observations of a surface drifter in Region A, how accurately can its position over the following 72 hours be forecast, and do statistical or machine-learning methods improve on transparent physical baselines?
+> How accurately can surface-drifter trajectories in the East China Sea be forecast at lead times of up to 72 hours, and how reliably can the uncertainty of those forecasts be quantified?
 
-The project will compare every method on identical held-out drifters and forecast origins. The main outcomes will describe how geographic position error grows from lead hour 1 to lead hour 72.
+- **RQ1.** How does trajectory separation error grow with lead time, and how do learned forecasting methods compare with persistence and mean-flow baselines?
+- **RQ2.** Does predictability differ between contrasting dynamical regimes, particularly Kuroshio-influenced and lower-energy waters?
+- **RQ3.** Can forecast uncertainty be represented by prediction regions with empirically validated coverage, and does coverage remain reliable across regimes?
+
+Forecast cases use 24 hours of track history to predict the subsequent 72 hours. All methods will be compared on identical held-out drifters and forecast origins. A separate calibration set is reserved for conformal prediction and uncertainty evaluation.
 
 ## 2. Motivation
 
@@ -179,7 +183,7 @@ Planned reporting includes:
 - drifter-clustered uncertainty intervals;
 - sensitivity to the 92 cases containing high-speed or land-mask flags.
 
-Later analyses may compare performance across bathymetry-informed dynamical regimes, observation periods, positioning systems and drogue-status groups. If conformal prediction is implemented, empirical coverage and prediction-region size will both be reported.
+Where sample sizes permit, performance will also be compared across spatial sectors, observation periods and bathymetry-informed dynamical regimes. Conformal prediction will generate lead-time-specific prediction regions, evaluated using both empirical coverage and prediction-region area.
 
 ## 12. Current progress
 
@@ -205,7 +209,7 @@ Later analyses may compare performance across bathymetry-informed dynamical regi
 - Spatial mean-flow baseline
 - Learned forecasting model
 - Held-out evaluation and clustered uncertainty
-- Regime comparison and optional conformal prediction
+- Regime comparison and conformal prediction
 
 ## 13. Repository structure
 
@@ -244,6 +248,14 @@ The source data contain no personal information. The main responsibilities are m
 
 ## 16. References
 
-- Elipot, S., Lumpkin, R., Perez, R. C., Lilly, J. M., Early, J. J., & Sykulski, A. M. (2016). A global surface drifter data set at hourly resolution. *Journal of Geophysical Research: Oceans, 121*, 2937–2966. [https://doi.org/10.1002/2016JC011716](https://doi.org/10.1002/2016JC011716)
-- Elipot, S., Sykulski, A., Lumpkin, R., Centurioni, L., & Pazos, M. (2022). A dataset of hourly sea surface temperature from drifting buoys. *Scientific Data, 9*, 567. [https://doi.org/10.1038/s41597-022-01670-2](https://doi.org/10.1038/s41597-022-01670-2)
-- Elipot, S., Sykulski, A., Lumpkin, R., Centurioni, L., & Pazos, M. (2022). *Hourly location, current velocity, and temperature collected from Global Drifter Program drifters world-wide*. NOAA National Centers for Environmental Information. [https://doi.org/10.25921/x46c-3620](https://doi.org/10.25921/x46c-3620)
+[1] S. Elipot, R. Lumpkin, R. C. Perez, J. M. Lilly, J. J. Early, and A. M. Sykulski, “A global surface drifter data set at hourly resolution,” *Journal of Geophysical Research: Oceans*, vol. 121, no. 5, pp. 2937–2966, 2016. [doi:10.1002/2016JC011716](https://doi.org/10.1002/2016JC011716)
+
+[2] S. Elipot, A. Sykulski, R. Lumpkin, L. Centurioni, and M. Pazos, “Hourly location, current velocity, and temperature collected from Global Drifter Program drifters world-wide,” NOAA National Centers for Environmental Information, Dataset, 2022. [doi:10.25921/x46c-3620](https://doi.org/10.25921/x46c-3620)
+
+[3] H.-J. Lie and C.-H. Cho, “Seasonal circulation patterns of the Yellow and East China Seas derived from satellite-tracked drifter trajectories and hydrographic observations,” *Progress in Oceanography*, vol. 146, pp. 121–141, 2016. [doi:10.1016/j.pocean.2016.06.004](https://doi.org/10.1016/j.pocean.2016.06.004)
+
+[4] H. S. Huntley, B. L. Lipphardt Jr., and A. D. Kirwan Jr., “Lagrangian predictability assessed in the East China Sea,” *Ocean Modelling*, vol. 36, nos. 1–2, pp. 163–178, 2011. [doi:10.1016/j.ocemod.2010.11.001](https://doi.org/10.1016/j.ocemod.2010.11.001)
+
+[5] M. D. Grossi, S. Jegelka, P. F. J. Lermusiaux, and T. M. Özgökmen, “Surface drifter trajectory prediction in the Gulf of Mexico using neural networks,” *Ocean Modelling*, vol. 196, Art. no. 102543, 2025. [doi:10.1016/j.ocemod.2025.102543](https://doi.org/10.1016/j.ocemod.2025.102543)
+
+[6] Y. Zhou, L. Lindemann, and M. Sesia, “Conformalized adaptive forecasting of heterogeneous trajectories,” in *Proceedings of the 41st International Conference on Machine Learning*, vol. 235, pp. 62002–62056, 2024. [Proceedings of Machine Learning Research](https://proceedings.mlr.press/v235/zhou24l.html)

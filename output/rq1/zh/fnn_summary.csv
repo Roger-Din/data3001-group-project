@@ -1,0 +1,12 @@
+指标,结果
+Selected configuration,128-64 stronger L2
+Selected L2,0.001
+Selected epochs,129
+Training cases,3591
+Calibration cases (unused),769
+Test cases,757
+24h median error (km),11.316341441815565
+48h median error (km),26.102218259461697
+72h median error (km),41.7155348543114
+72h RMSE (km),62.14982255103455
+Median ITE (km·h),1423.7320783128032

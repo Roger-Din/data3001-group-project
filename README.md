@@ -198,6 +198,8 @@ Where sample sizes permit, performance will also be compared across spatial sect
 - Non-overlapping forecast-origin index
 - Output validation and QC summary
 - Proposal-method and initial-analysis notebook
+- Velocity-persistence baseline on all fixed forecast cases
+- Held-out persistence evaluation for 757 test cases
 
 ### Remaining
 
@@ -205,7 +207,6 @@ Where sample sizes permit, performance will also be compared across spatial sect
 - Split-balance checks across time, space, positioning system and drogue status
 - Saved autocorrelation figure and robustness analysis
 - Extraction of model-ready 24-step inputs and 72-step targets
-- Velocity-persistence baseline
 - Spatial mean-flow baseline
 - Learned forecasting model
 - Held-out evaluation and clustered uncertainty
@@ -225,7 +226,8 @@ data3001-group-project/
 │   │   ├── proposal_method_and_initial_analysis.ipynb
 │   │   └── project_progress_overview.ipynb
 │   ├── 01_rq1_forecasting/
-│   │   └── README.md
+│   │   ├── README.md
+│   │   └── 01_velocity_persistence_baseline.ipynb
 │   ├── 02_rq2_regime_analysis/
 │   │   └── README.md
 │   └── 03_rq3_conformal_prediction/
@@ -239,8 +241,15 @@ data3001-group-project/
 │   └── processed/
 │       └── qc_summary.csv
 └── output/
-    └── pdf/
-        └── project_progress_overview_zh.pdf
+    ├── pdf/
+    │   └── project_progress_overview_zh.pdf
+    └── rq1/
+        ├── README.md
+        ├── velocity_persistence_error_curve.png
+        ├── velocity_persistence_example_trajectory.png
+        ├── velocity_persistence_lead_metrics.csv
+        ├── velocity_persistence_summary.csv
+        └── velocity_persistence_test_case_metrics.csv
 ```
 
 Large raw and derived datasets are intentionally excluded from Git. In particular, `RegionA.csv` and generated Parquet tables remain local. The tracked `qc_summary.csv` provides a compact audit trail of the processing results.

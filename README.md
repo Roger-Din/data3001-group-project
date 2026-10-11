@@ -216,21 +216,36 @@ Where sample sizes permit, performance will also be compared across spatial sect
 ```text
 data3001-group-project/
 ├── README.md
-├── 01_data_check_clean.ipynb
-├── explore.ipynb
-├── explore.py
-├── regionA_final.ipynb
-├── proposal_method_and_initial_analysis.ipynb
-├── data_dictionary/
-│   └── gdp1h_variable_dictionary.csv
-└── data/
-    └── processed/
-        └── qc_summary.csv
+├── notebooks/
+│   ├── README.md
+│   ├── 00_preliminary/
+│   │   ├── 01_data_check_clean.ipynb
+│   │   ├── explore.ipynb
+│   │   ├── regionA_final.ipynb
+│   │   ├── proposal_method_and_initial_analysis.ipynb
+│   │   └── project_progress_overview.ipynb
+│   ├── 01_rq1_forecasting/
+│   │   └── README.md
+│   ├── 02_rq2_regime_analysis/
+│   │   └── README.md
+│   └── 03_rq3_conformal_prediction/
+│       └── README.md
+├── scripts/
+│   └── preliminary/
+│       └── explore.py
+├── data/
+│   ├── dictionary/
+│   │   └── gdp1h_variable_dictionary.csv
+│   └── processed/
+│       └── qc_summary.csv
+└── output/
+    └── pdf/
+        └── project_progress_overview_zh.pdf
 ```
 
 Large raw and derived datasets are intentionally excluded from Git. In particular, `RegionA.csv` and generated Parquet tables remain local. The tracked `qc_summary.csv` provides a compact audit trail of the processing results.
 
-The explanatory notebook `proposal_method_and_initial_analysis.ipynb` recalculates the main descriptive findings from the local Region A data and distinguishes completed preprocessing from future modelling work.
+The explanatory notebook `notebooks/00_preliminary/proposal_method_and_initial_analysis.ipynb` recalculates the main descriptive findings from the local Region A data and distinguishes completed preprocessing from future modelling work. New work should be saved in the numbered RQ folder that it answers; exploratory or superseded work remains in `notebooks/00_preliminary/`.
 
 ## 14. Reproducibility rules
 

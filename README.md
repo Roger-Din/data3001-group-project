@@ -12,7 +12,7 @@ This group project uses hourly observations from the NOAA Global Drifter Program
 | Target | The following 72 hourly positions |
 | Complete case | 96 consecutive hourly observations |
 | Split unit | Drifter ID |
-| Current stage | Processing and case construction completed; forecasting models not yet fitted |
+| Current stage | RQ1 baselines and four learned/statistical models completed and evaluated |
 
 All analysis, processing outputs and planned model comparisons in this repository use the **24-hour-to-72-hour Region A design**.
 
@@ -164,9 +164,16 @@ Retain the latest observed eastward and northward velocities and integrate them 
 
 Estimate a spatial average velocity field using training drifters only, then advect each case through the corresponding grid-cell flow. Sparse cells will use a documented fallback based on coarser or regional training-only averages.
 
-### 10.3 Learned or statistical method
+### 10.3 Learned and statistical methods
 
-Candidate methods include a feed-forward neural network, a statistical time-series model or a spatiotemporal model. The first learned benchmark should remain simple and use only information available at the forecast origin. More complex models will be retained only if they improve grouped training validation.
+Four complementary methods have now been implemented with identical inputs, outputs and held-out evaluation:
+
+- multi-output Ridge as the regularised linear benchmark;
+- a fully connected neural network (FNN) for nonlinear trajectory regression;
+- pooled VAR(1) for explicit temporal velocity dynamics;
+- weighted K-nearest-neighbour trajectory regression as a nonparametric analogue method.
+
+All model selection is performed with drifter-grouped folds inside the training partition. The FNN currently has the lowest held-out error (72-hour median 41.72 km; RMSE 62.15 km), followed closely by weighted KNN and Ridge.
 
 ## 11. Evaluation plan
 
@@ -189,48 +196,51 @@ Where sample sizes permit, performance will also be compared across spatial sect
 
 ### Completed
 
-- Region A data extraction and inventory
-- Core QC and review flags
-- Continuous-segment construction
-- 96-observation feasibility assessment
-- Drifter-level training/calibration/test split
-- Training-only velocity autocorrelation and \(T_L\)
-- Non-overlapping forecast-origin index
-- Output validation and QC summary
-- Proposal-method and initial-analysis notebook
+- Region A extraction, quality-control inventory and continuous-segment construction
+- Drifter-level training/calibration/test split and non-overlapping forecast origins
+- Model-ready 24-hour inputs and 72-hour trajectory targets
+- Velocity-persistence and training-only spatial mean-flow baselines
+- Multi-output Ridge with grouped penalty selection
+- Fully connected neural network with grouped architecture and regularisation selection
+- Pooled VAR(1) with training-only velocity transitions and stability diagnostics
+- Weighted KNN trajectory regression with grouped neighbour selection
+- Common held-out evaluation on 757 test cases using separation error, RMSE and ITE
+- Matched English and Chinese notebooks, tables and poster-ready figures
 
 ### Remaining
 
-- Manual review of high-speed and land-mask cases
-- Split-balance checks across time, space, positioning system and drogue status
-- Saved autocorrelation figure and robustness analysis
-- Extraction of model-ready 24-step inputs and 72-step targets
-- Velocity-persistence baseline
-- Spatial mean-flow baseline
-- Learned forecasting model
-- Held-out evaluation and clustered uncertainty
-- Regime comparison and conformal prediction
+- Manual review and sensitivity analysis for high-speed and land-mask flags
+- RQ2 dynamical-regime comparison
+- RQ3 conformal prediction using the untouched calibration partition
+- Final poster synthesis and uncertainty reporting
 
 ## 13. Repository structure
 
 ```text
 data3001-group-project/
 ├── README.md
-├── 01_data_check_clean.ipynb
-├── explore.ipynb
-├── explore.py
-├── regionA_final.ipynb
-├── proposal_method_and_initial_analysis.ipynb
-├── data_dictionary/
-│   └── gdp1h_variable_dictionary.csv
-└── data/
-    └── processed/
-        └── qc_summary.csv
+├── notebooks/
+│   ├── 00_preliminary/
+│   ├── 01_rq1_forecasting/
+│   │   ├── README.md
+│   │   ├── en/                 # English teacher-facing notebooks (01--06)
+│   │   └── zh/                 # 中文组内交流 notebooks（01--06）
+│   ├── 02_rq2_regime_analysis/
+│   └── 03_rq3_conformal_prediction/
+├── scripts/
+├── data/
+│   ├── dictionary/
+│   └── processed/              # Large generated tables remain local
+└── output/
+    └── rq1/
+        ├── README.md
+        ├── en/                 # English metrics and figures
+        └── zh/                 # 中文指标和图片
 ```
 
 Large raw and derived datasets are intentionally excluded from Git. In particular, `RegionA.csv` and generated Parquet tables remain local. The tracked `qc_summary.csv` provides a compact audit trail of the processing results.
 
-The explanatory notebook `proposal_method_and_initial_analysis.ipynb` recalculates the main descriptive findings from the local Region A data and distinguishes completed preprocessing from future modelling work.
+The explanatory notebook `notebooks/00_preliminary/proposal_method_and_initial_analysis.ipynb` recalculates the main descriptive findings from the local Region A data and distinguishes completed preprocessing from future modelling work. New work should be saved in the numbered RQ folder that it answers; exploratory or superseded work remains in `notebooks/00_preliminary/`.
 
 ## 14. Reproducibility rules
 

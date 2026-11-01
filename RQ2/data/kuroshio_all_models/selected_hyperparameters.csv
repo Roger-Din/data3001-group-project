@@ -1,0 +1,5 @@
+model,hyperparameters
+Regional Ridge,alpha=10
+Regional Weighted KNN,"K=20, p=2"
+Regional FNN,"hidden=(128, 64), L2=0.001, epochs=121"
+Regional VAR(1),no tuned hyperparameter; 14858 unique one-hour transitions

@@ -1,0 +1,577 @@
+model,baseline,lead_time_hours,skill_pct
+Boosting residual,Velocity persistence,1,0.4170374314258041
+Boosting residual,Velocity persistence,2,3.2638469446690133
+Boosting residual,Velocity persistence,3,7.831319586348728
+Boosting residual,Velocity persistence,4,10.976702380933967
+Boosting residual,Velocity persistence,5,13.415805440941442
+Boosting residual,Velocity persistence,6,15.51868892598154
+Boosting residual,Velocity persistence,7,17.45910792125782
+Boosting residual,Velocity persistence,8,18.801163403181974
+Boosting residual,Velocity persistence,9,19.768852566453667
+Boosting residual,Velocity persistence,10,20.63338904838651
+Boosting residual,Velocity persistence,11,21.274663036919872
+Boosting residual,Velocity persistence,12,21.93183483950302
+Boosting residual,Velocity persistence,13,22.57807236790018
+Boosting residual,Velocity persistence,14,23.18483024608917
+Boosting residual,Velocity persistence,15,23.8427670013315
+Boosting residual,Velocity persistence,16,24.39341308387376
+Boosting residual,Velocity persistence,17,25.032723629298747
+Boosting residual,Velocity persistence,18,25.50534287625077
+Boosting residual,Velocity persistence,19,25.828512575242037
+Boosting residual,Velocity persistence,20,26.046440491148537
+Boosting residual,Velocity persistence,21,26.046401632195014
+Boosting residual,Velocity persistence,22,25.942568660251297
+Boosting residual,Velocity persistence,23,25.757965180887112
+Boosting residual,Velocity persistence,24,25.503783679318936
+Boosting residual,Velocity persistence,25,25.23827343832933
+Boosting residual,Velocity persistence,26,25.136626241106143
+Boosting residual,Velocity persistence,27,25.065358671353877
+Boosting residual,Velocity persistence,28,25.037774473995956
+Boosting residual,Velocity persistence,29,25.10018625181809
+Boosting residual,Velocity persistence,30,25.2113877699096
+Boosting residual,Velocity persistence,31,25.43958309889307
+Boosting residual,Velocity persistence,32,25.66894413965901
+Boosting residual,Velocity persistence,33,25.90307578159169
+Boosting residual,Velocity persistence,34,26.0898892980733
+Boosting residual,Velocity persistence,35,26.314351806652613
+Boosting residual,Velocity persistence,36,26.457054160783898
+Boosting residual,Velocity persistence,37,26.596294570652145
+Boosting residual,Velocity persistence,38,26.77877460170166
+Boosting residual,Velocity persistence,39,26.981408599115387
+Boosting residual,Velocity persistence,40,27.171056965487562
+Boosting residual,Velocity persistence,41,27.40208509918641
+Boosting residual,Velocity persistence,42,27.64097770958295
+Boosting residual,Velocity persistence,43,27.9042095602569
+Boosting residual,Velocity persistence,44,28.115874748728032
+Boosting residual,Velocity persistence,45,28.29042400193137
+Boosting residual,Velocity persistence,46,28.45126766860814
+Boosting residual,Velocity persistence,47,28.55553626712133
+Boosting residual,Velocity persistence,48,28.658583567091235
+Boosting residual,Velocity persistence,49,28.73896091898065
+Boosting residual,Velocity persistence,50,28.827967791098263
+Boosting residual,Velocity persistence,51,28.916741956885428
+Boosting residual,Velocity persistence,52,28.9948924970482
+Boosting residual,Velocity persistence,53,29.102968562293086
+Boosting residual,Velocity persistence,54,29.260277624867513
+Boosting residual,Velocity persistence,55,29.441662115982037
+Boosting residual,Velocity persistence,56,29.674318666546363
+Boosting residual,Velocity persistence,57,29.89333955675614
+Boosting residual,Velocity persistence,58,30.100408018059134
+Boosting residual,Velocity persistence,59,30.317638446369255
+Boosting residual,Velocity persistence,60,30.526643324385006
+Boosting residual,Velocity persistence,61,30.711616919092865
+Boosting residual,Velocity persistence,62,30.886590028405337
+Boosting residual,Velocity persistence,63,31.05075843765738
+Boosting residual,Velocity persistence,64,31.226934769540872
+Boosting residual,Velocity persistence,65,31.407941671846874
+Boosting residual,Velocity persistence,66,31.595228158185606
+Boosting residual,Velocity persistence,67,31.785452760812905
+Boosting residual,Velocity persistence,68,31.982729790936425
+Boosting residual,Velocity persistence,69,32.15911340012827
+Boosting residual,Velocity persistence,70,32.29775305315895
+Boosting residual,Velocity persistence,71,32.429194556552474
+Boosting residual,Velocity persistence,72,32.556539377429694
+Boosting residual,Spatial mean flow,1,69.55696154484916
+Boosting residual,Spatial mean flow,2,65.64125506310474
+Boosting residual,Spatial mean flow,3,63.687531285793206
+Boosting residual,Spatial mean flow,4,60.36801487435813
+Boosting residual,Spatial mean flow,5,57.32271049247905
+Boosting residual,Spatial mean flow,6,54.65187052338305
+Boosting residual,Spatial mean flow,7,52.42834346618353
+Boosting residual,Spatial mean flow,8,50.315879289346086
+Boosting residual,Spatial mean flow,9,48.71393468079779
+Boosting residual,Spatial mean flow,10,47.317992238390424
+Boosting residual,Spatial mean flow,11,46.29077697637156
+Boosting residual,Spatial mean flow,12,45.262727328702525
+Boosting residual,Spatial mean flow,13,44.7283015066816
+Boosting residual,Spatial mean flow,14,44.19583656300632
+Boosting residual,Spatial mean flow,15,43.68243160918281
+Boosting residual,Spatial mean flow,16,43.084997573217755
+Boosting residual,Spatial mean flow,17,42.692236290204036
+Boosting residual,Spatial mean flow,18,42.18930750072596
+Boosting residual,Spatial mean flow,19,41.731077575180095
+Boosting residual,Spatial mean flow,20,41.26895533583998
+Boosting residual,Spatial mean flow,21,40.92342471865014
+Boosting residual,Spatial mean flow,22,40.629704851118035
+Boosting residual,Spatial mean flow,23,40.338735276972045
+Boosting residual,Spatial mean flow,24,39.9644064463358
+Boosting residual,Spatial mean flow,25,39.69074770118005
+Boosting residual,Spatial mean flow,26,39.47378802756278
+Boosting residual,Spatial mean flow,27,39.1730954958051
+Boosting residual,Spatial mean flow,28,38.84289520389624
+Boosting residual,Spatial mean flow,29,38.431444527873346
+Boosting residual,Spatial mean flow,30,37.97213826026618
+Boosting residual,Spatial mean flow,31,37.43770875390931
+Boosting residual,Spatial mean flow,32,36.93983034965118
+Boosting residual,Spatial mean flow,33,36.46199864219098
+Boosting residual,Spatial mean flow,34,35.917555592667426
+Boosting residual,Spatial mean flow,35,35.495858264050604
+Boosting residual,Spatial mean flow,36,35.09137977735386
+Boosting residual,Spatial mean flow,37,34.71496162740769
+Boosting residual,Spatial mean flow,38,34.355690977303425
+Boosting residual,Spatial mean flow,39,33.979269782774836
+Boosting residual,Spatial mean flow,40,33.58056565770505
+Boosting residual,Spatial mean flow,41,33.19854094252885
+Boosting residual,Spatial mean flow,42,32.89586759877113
+Boosting residual,Spatial mean flow,43,32.544628833441145
+Boosting residual,Spatial mean flow,44,32.19781460141184
+Boosting residual,Spatial mean flow,45,31.914179298965696
+Boosting residual,Spatial mean flow,46,31.64738478826904
+Boosting residual,Spatial mean flow,47,31.434972048705433
+Boosting residual,Spatial mean flow,48,31.269863099470808
+Boosting residual,Spatial mean flow,49,31.10044836086887
+Boosting residual,Spatial mean flow,50,30.88859554552229
+Boosting residual,Spatial mean flow,51,30.66885075687853
+Boosting residual,Spatial mean flow,52,30.397290400059763
+Boosting residual,Spatial mean flow,53,30.112037472392338
+Boosting residual,Spatial mean flow,54,29.77871724243606
+Boosting residual,Spatial mean flow,55,29.44553857464762
+Boosting residual,Spatial mean flow,56,29.12076059200578
+Boosting residual,Spatial mean flow,57,28.811723983196515
+Boosting residual,Spatial mean flow,58,28.463498255606325
+Boosting residual,Spatial mean flow,59,28.16070218959801
+Boosting residual,Spatial mean flow,60,27.86010787959061
+Boosting residual,Spatial mean flow,61,27.572013358449297
+Boosting residual,Spatial mean flow,62,27.33309047617929
+Boosting residual,Spatial mean flow,63,27.122757662117102
+Boosting residual,Spatial mean flow,64,26.878350066757395
+Boosting residual,Spatial mean flow,65,26.65029627491693
+Boosting residual,Spatial mean flow,66,26.43716756817983
+Boosting residual,Spatial mean flow,67,26.192624247377495
+Boosting residual,Spatial mean flow,68,25.954443273696658
+Boosting residual,Spatial mean flow,69,25.667795651204127
+Boosting residual,Spatial mean flow,70,25.407578707260647
+Boosting residual,Spatial mean flow,71,25.162024676209903
+Boosting residual,Spatial mean flow,72,24.95873972086575
+Optimised FNN,Velocity persistence,1,-24.981032773541823
+Optimised FNN,Velocity persistence,2,-11.993805400605817
+Optimised FNN,Velocity persistence,3,-2.2664630022945165
+Optimised FNN,Velocity persistence,4,4.565202986549988
+Optimised FNN,Velocity persistence,5,9.245828719063676
+Optimised FNN,Velocity persistence,6,12.698221324783853
+Optimised FNN,Velocity persistence,7,15.32634597960344
+Optimised FNN,Velocity persistence,8,17.17599340519953
+Optimised FNN,Velocity persistence,9,18.476494665187193
+Optimised FNN,Velocity persistence,10,19.762689102661867
+Optimised FNN,Velocity persistence,11,20.856595283785573
+Optimised FNN,Velocity persistence,12,21.625546637174065
+Optimised FNN,Velocity persistence,13,22.279829823549647
+Optimised FNN,Velocity persistence,14,22.914402921707644
+Optimised FNN,Velocity persistence,15,23.66668206861383
+Optimised FNN,Velocity persistence,16,24.313672325948808
+Optimised FNN,Velocity persistence,17,25.049603874975457
+Optimised FNN,Velocity persistence,18,25.671104599556436
+Optimised FNN,Velocity persistence,19,25.958911058193767
+Optimised FNN,Velocity persistence,20,26.145078768116058
+Optimised FNN,Velocity persistence,21,26.161804343562324
+Optimised FNN,Velocity persistence,22,25.938349125335726
+Optimised FNN,Velocity persistence,23,25.74467774829854
+Optimised FNN,Velocity persistence,24,25.446860637086623
+Optimised FNN,Velocity persistence,25,24.988082441171677
+Optimised FNN,Velocity persistence,26,24.825442255842866
+Optimised FNN,Velocity persistence,27,24.58286049379863
+Optimised FNN,Velocity persistence,28,24.429491656985856
+Optimised FNN,Velocity persistence,29,24.441662908154882
+Optimised FNN,Velocity persistence,30,24.493037980342315
+Optimised FNN,Velocity persistence,31,24.705520413730795
+Optimised FNN,Velocity persistence,32,25.049952203876636
+Optimised FNN,Velocity persistence,33,25.208128564652387
+Optimised FNN,Velocity persistence,34,25.40974645457895
+Optimised FNN,Velocity persistence,35,25.542453965683976
+Optimised FNN,Velocity persistence,36,25.675006261699252
+Optimised FNN,Velocity persistence,37,25.766628247912816
+Optimised FNN,Velocity persistence,38,25.90055268244249
+Optimised FNN,Velocity persistence,39,26.102294774190625
+Optimised FNN,Velocity persistence,40,26.219535635313175
+Optimised FNN,Velocity persistence,41,26.427437808780454
+Optimised FNN,Velocity persistence,42,26.629724561776158
+Optimised FNN,Velocity persistence,43,26.892891066806214
+Optimised FNN,Velocity persistence,44,27.141458363161732
+Optimised FNN,Velocity persistence,45,27.2961687781614
+Optimised FNN,Velocity persistence,46,27.465487203758997
+Optimised FNN,Velocity persistence,47,27.567305787991316
+Optimised FNN,Velocity persistence,48,27.7037375922781
+Optimised FNN,Velocity persistence,49,27.78649600148706
+Optimised FNN,Velocity persistence,50,27.852996996483682
+Optimised FNN,Velocity persistence,51,27.93145245673444
+Optimised FNN,Velocity persistence,52,28.018869849765892
+Optimised FNN,Velocity persistence,53,28.15466534065282
+Optimised FNN,Velocity persistence,54,28.303372678306914
+Optimised FNN,Velocity persistence,55,28.507490180528873
+Optimised FNN,Velocity persistence,56,28.748612540504293
+Optimised FNN,Velocity persistence,57,28.910408016804844
+Optimised FNN,Velocity persistence,58,29.146417967886705
+Optimised FNN,Velocity persistence,59,29.356693861363336
+Optimised FNN,Velocity persistence,60,29.59168994024862
+Optimised FNN,Velocity persistence,61,29.76998945862602
+Optimised FNN,Velocity persistence,62,29.908562611643895
+Optimised FNN,Velocity persistence,63,30.044516418989133
+Optimised FNN,Velocity persistence,64,30.2243429397412
+Optimised FNN,Velocity persistence,65,30.396995446234698
+Optimised FNN,Velocity persistence,66,30.525117524349998
+Optimised FNN,Velocity persistence,67,30.76454193908922
+Optimised FNN,Velocity persistence,68,30.981556346791027
+Optimised FNN,Velocity persistence,69,31.14095873344268
+Optimised FNN,Velocity persistence,70,31.25757262690302
+Optimised FNN,Velocity persistence,71,31.39005403210008
+Optimised FNN,Velocity persistence,72,31.528076690981223
+Optimised FNN,Spatial mean flow,1,61.79263712636222
+Optimised FNN,Spatial mean flow,2,60.2220424036219
+Optimised FNN,Spatial mean flow,3,59.70922311551956
+Optimised FNN,Spatial mean flow,4,57.51370083042558
+Optimised FNN,Spatial mean flow,5,55.26733185547141
+Optimised FNN,Spatial mean flow,6,53.13789153397492
+Optimised FNN,Spatial mean flow,7,51.199146446359855
+Optimised FNN,Spatial mean flow,8,49.32146673690987
+Optimised FNN,Spatial mean flow,9,47.88782220627489
+Optimised FNN,Spatial mean flow,10,46.74003860337048
+Optimised FNN,Spatial mean flow,11,46.005556295733406
+Optimised FNN,Spatial mean flow,12,45.04797422399698
+Optimised FNN,Spatial mean flow,13,44.51538544409588
+Optimised FNN,Spatial mean flow,14,43.99937835486902
+Optimised FNN,Spatial mean flow,15,43.552218432437094
+Optimised FNN,Spatial mean flow,16,43.02497045632321
+Optimised FNN,Spatial mean flow,17,42.70514017543818
+Optimised FNN,Spatial mean flow,18,42.317944914255555
+Optimised FNN,Spatial mean flow,19,41.83351827512071
+Optimised FNN,Spatial mean flow,20,41.347290024374914
+Optimised FNN,Spatial mean flow,21,41.015612213460805
+Optimised FNN,Spatial mean flow,22,40.626322138150584
+Optimised FNN,Spatial mean flow,23,40.328057430721095
+Optimised FNN,Spatial mean flow,24,39.91853285978226
+Optimised FNN,Spatial mean flow,25,39.488922079108214
+Optimised FNN,Spatial mean flow,26,39.22219920770633
+Optimised FNN,Spatial mean flow,27,38.78143591020857
+Optimised FNN,Spatial mean flow,28,38.34663437753309
+Optimised FNN,Spatial mean flow,29,37.89013035117418
+Optimised FNN,Spatial mean flow,30,37.37635636113209
+Optimised FNN,Spatial mean flow,31,36.821770090866146
+Optimised FNN,Spatial mean flow,32,36.414696729109394
+Optimised FNN,Spatial mean flow,33,35.866082446218506
+Optimised FNN,Spatial mean flow,34,35.32784986034826
+Optimised FNN,Spatial mean flow,35,34.82014177162232
+Optimised FNN,Spatial mean flow,36,34.401148382644955
+Optimised FNN,Spatial mean flow,37,33.97705885533825
+Optimised FNN,Spatial mean flow,38,33.56834727000055
+Optimised FNN,Spatial mean flow,39,33.184407329910705
+Optimised FNN,Spatial mean flow,40,32.7127855433505
+Optimised FNN,Spatial mean flow,41,32.301712691270076
+Optimised FNN,Spatial mean flow,42,31.958054137870164
+Optimised FNN,Spatial mean flow,43,31.598403486202077
+Optimised FNN,Spatial mean flow,44,31.278730447592785
+Optimised FNN,Spatial mean flow,45,30.97016754105916
+Optimised FNN,Spatial mean flow,46,30.705639622401005
+Optimised FNN,Spatial mean flow,47,30.486570354807785
+Optimised FNN,Spatial mean flow,48,30.349966945887385
+Optimised FNN,Spatial mean flow,49,30.179546748801446
+Optimised FNN,Spatial mean flow,50,29.9418528598542
+Optimised FNN,Spatial mean flow,51,29.707847346747627
+Optimised FNN,Spatial mean flow,52,29.44054484652432
+Optimised FNN,Spatial mean flow,53,29.177231336298526
+Optimised FNN,Spatial mean flow,54,28.828825292504334
+Optimised FNN,Spatial mean flow,55,28.511417962383224
+Optimised FNN,Spatial mean flow,56,28.187767908748672
+Optimised FNN,Spatial mean flow,57,27.813627635013983
+Optimised FNN,Spatial mean flow,58,27.487167651188404
+Optimised FNN,Spatial mean flow,59,27.170012685362387
+Optimised FNN,Spatial mean flow,60,26.88926899261792
+Optimised FNN,Spatial mean flow,61,26.587718761065293
+Optimised FNN,Spatial mean flow,62,26.30477730461346
+Optimised FNN,Spatial mean flow,63,26.059190583155978
+Optimised FNN,Spatial mean flow,64,25.812363425637443
+Optimised FNN,Spatial mean flow,65,25.569229341834266
+Optimised FNN,Spatial mean flow,66,25.286365261253085
+Optimised FNN,Spatial mean flow,67,25.08801017782032
+Optimised FNN,Spatial mean flow,68,24.86453706570746
+Optimised FNN,Spatial mean flow,69,24.552219417816634
+Optimised FNN,Spatial mean flow,70,24.261537326438145
+Optimised FNN,Spatial mean flow,71,24.011125668619936
+Optimised FNN,Spatial mean flow,72,23.814416232291247
+Optimised KNN,Velocity persistence,1,-72.68067241145573
+Optimised KNN,Velocity persistence,2,-51.77354773694349
+Optimised KNN,Velocity persistence,3,-36.64786520847334
+Optimised KNN,Velocity persistence,4,-23.191966622065998
+Optimised KNN,Velocity persistence,5,-13.41123644169484
+Optimised KNN,Velocity persistence,6,-6.405702290102178
+Optimised KNN,Velocity persistence,7,-1.4155980772977417
+Optimised KNN,Velocity persistence,8,2.6853543242132627
+Optimised KNN,Velocity persistence,9,5.652506954281932
+Optimised KNN,Velocity persistence,10,8.11373970720808
+Optimised KNN,Velocity persistence,11,10.065535372413636
+Optimised KNN,Velocity persistence,12,11.816803044707946
+Optimised KNN,Velocity persistence,13,13.084164636611106
+Optimised KNN,Velocity persistence,14,14.226627812181047
+Optimised KNN,Velocity persistence,15,15.337746036455947
+Optimised KNN,Velocity persistence,16,16.402607926029077
+Optimised KNN,Velocity persistence,17,17.572507351792055
+Optimised KNN,Velocity persistence,18,18.56623892370416
+Optimised KNN,Velocity persistence,19,19.204571558375783
+Optimised KNN,Velocity persistence,20,19.752491189761866
+Optimised KNN,Velocity persistence,21,19.916710331330123
+Optimised KNN,Velocity persistence,22,19.959921817470295
+Optimised KNN,Velocity persistence,23,19.84889561847376
+Optimised KNN,Velocity persistence,24,19.65752338939566
+Optimised KNN,Velocity persistence,25,19.384926421299486
+Optimised KNN,Velocity persistence,26,19.153762165184894
+Optimised KNN,Velocity persistence,27,19.104019870924247
+Optimised KNN,Velocity persistence,28,19.08017469529333
+Optimised KNN,Velocity persistence,29,19.178841556053793
+Optimised KNN,Velocity persistence,30,19.37126318257786
+Optimised KNN,Velocity persistence,31,19.782090906298734
+Optimised KNN,Velocity persistence,32,20.19393046745649
+Optimised KNN,Velocity persistence,33,20.502978419376927
+Optimised KNN,Velocity persistence,34,20.81169810651009
+Optimised KNN,Velocity persistence,35,21.08424734911617
+Optimised KNN,Velocity persistence,36,21.27641832993121
+Optimised KNN,Velocity persistence,37,21.48272702128895
+Optimised KNN,Velocity persistence,38,21.7083900097482
+Optimised KNN,Velocity persistence,39,21.969091052586354
+Optimised KNN,Velocity persistence,40,22.21215640336348
+Optimised KNN,Velocity persistence,41,22.544663322387514
+Optimised KNN,Velocity persistence,42,22.835879867597207
+Optimised KNN,Velocity persistence,43,23.156022010070586
+Optimised KNN,Velocity persistence,44,23.46434529712501
+Optimised KNN,Velocity persistence,45,23.730796757128747
+Optimised KNN,Velocity persistence,46,23.980999035138606
+Optimised KNN,Velocity persistence,47,24.157159481798416
+Optimised KNN,Velocity persistence,48,24.315332953057833
+Optimised KNN,Velocity persistence,49,24.447665962902775
+Optimised KNN,Velocity persistence,50,24.59088109919193
+Optimised KNN,Velocity persistence,51,24.68311902883107
+Optimised KNN,Velocity persistence,52,24.798364765927893
+Optimised KNN,Velocity persistence,53,24.97292409352445
+Optimised KNN,Velocity persistence,54,25.213530099026414
+Optimised KNN,Velocity persistence,55,25.448291920853727
+Optimised KNN,Velocity persistence,56,25.755764717103837
+Optimised KNN,Velocity persistence,57,26.019669684157233
+Optimised KNN,Velocity persistence,58,26.297312165983598
+Optimised KNN,Velocity persistence,59,26.554745568370397
+Optimised KNN,Velocity persistence,60,26.81586647405546
+Optimised KNN,Velocity persistence,61,27.052766277017415
+Optimised KNN,Velocity persistence,62,27.255799157321924
+Optimised KNN,Velocity persistence,63,27.44532986687741
+Optimised KNN,Velocity persistence,64,27.649493451472416
+Optimised KNN,Velocity persistence,65,27.87397399216166
+Optimised KNN,Velocity persistence,66,28.09163870428758
+Optimised KNN,Velocity persistence,67,28.32475365760717
+Optimised KNN,Velocity persistence,68,28.561082006336214
+Optimised KNN,Velocity persistence,69,28.77265699341418
+Optimised KNN,Velocity persistence,70,28.94762123534188
+Optimised KNN,Velocity persistence,71,29.11713834408457
+Optimised KNN,Velocity persistence,72,29.29283840555412
+Optimised KNN,Spatial mean flow,1,47.21060495601081
+Optimised KNN,Spatial mean flow,2,46.09307430409585
+Optimised KNN,Spatial mean flow,3,46.16369348051445
+Optimised KNN,Spatial mean flow,4,45.156579015349315
+Optimised KNN,Spatial mean flow,5,44.0996801358852
+Optimised KNN,Spatial mean flow,6,42.88323058487793
+Optimised KNN,Spatial mean flow,7,41.55008654010774
+Optimised KNN,Spatial mean flow,8,40.454902984905885
+Optimised KNN,Spatial mean flow,9,39.690359095842794
+Optimised KNN,Spatial mean flow,10,39.00769328702537
+Optimised KNN,Spatial mean flow,11,38.64351167580353
+Optimised KNN,Spatial mean flow,12,38.17060146289951
+Optimised KNN,Spatial mean flow,13,37.95057817046191
+Optimised KNN,Spatial mean flow,14,37.68794242796757
+Optimised KNN,Spatial mean flow,15,37.39304738400898
+Optimised KNN,Spatial mean flow,16,37.06969237956842
+Optimised KNN,Spatial mean flow,17,36.98937055527634
+Optimised KNN,Spatial mean flow,18,36.80429842343362
+Optimised KNN,Spatial mean flow,19,36.52732720344994
+Optimised KNN,Spatial mean flow,20,36.270545252692386
+Optimised KNN,Spatial mean flow,21,36.026824991534944
+Optimised KNN,Spatial mean flow,22,35.83354189485851
+Optimised KNN,Spatial mean flow,23,35.59017788237904
+Optimised KNN,Spatial mean flow,24,35.252976471638895
+Optimised KNN,Spatial mean flow,25,34.96893350188651
+Optimised KNN,Spatial mean flow,26,34.6367084106631
+Optimised KNN,Spatial mean flow,27,34.33408139629721
+Optimised KNN,Spatial mean flow,28,33.98245314200775
+Optimised KNN,Spatial mean flow,29,33.564027359167824
+Optimised KNN,Spatial mean flow,30,33.1284805208853
+Optimised KNN,Spatial mean flow,31,32.69060983753622
+Optimised KNN,Spatial mean flow,32,32.29499802471067
+Optimised KNN,Spatial mean flow,33,31.831423255264703
+Optimised KNN,Spatial mean flow,34,31.341193977289628
+Optimised KNN,Spatial mean flow,35,30.917444319213928
+Optimised KNN,Spatial mean flow,36,30.518977627570276
+Optimised KNN,Spatial mean flow,37,30.166969782468133
+Optimised KNN,Spatial mean flow,38,29.80998867298432
+Optimised KNN,Spatial mean flow,39,29.447316232949873
+Optimised KNN,Spatial mean flow,40,29.058086591382647
+Optimised KNN,Spatial mean flow,41,28.728951665880576
+Optimised KNN,Spatial mean flow,42,28.439727761843393
+Optimised KNN,Spatial mean flow,43,28.10205664423757
+Optimised KNN,Spatial mean flow,44,27.81042223679514
+Optimised KNN,Spatial mean flow,45,27.584967213517796
+Optimised KNN,Spatial mean flow,46,27.37680525680539
+Optimised KNN,Spatial mean flow,47,27.213863631494284
+Optimised KNN,Spatial mean flow,48,27.08558664097701
+Optimised KNN,Spatial mean flow,49,26.951360693358517
+Optimised KNN,Spatial mean flow,50,26.774184266474986
+Optimised KNN,Spatial mean flow,51,26.539581064625462
+Optimised KNN,Spatial mean flow,52,26.283646871175314
+Optimised KNN,Spatial mean flow,53,26.040775429153374
+Optimised KNN,Spatial mean flow,54,25.761627653737662
+Optimised KNN,Spatial mean flow,55,25.45238777434864
+Optimised KNN,Spatial mean flow,56,25.17136233166419
+Optimised KNN,Spatial mean flow,57,24.87829057836627
+Optimised KNN,Spatial mean flow,58,24.571341444070338
+Optimised KNN,Spatial mean flow,59,24.281333349850133
+Optimised KNN,Spatial mean flow,60,24.006903507796583
+Optimised KNN,Spatial mean flow,61,23.747372435334814
+Optimised KNN,Spatial mean flow,62,23.515620728450603
+Optimised KNN,Spatial mean flow,63,23.311929787424944
+Optimised KNN,Spatial mean flow,64,23.07470381600597
+Optimised KNN,Spatial mean flow,65,22.871207432899542
+Optimised KNN,Spatial mean flow,66,22.669390014546565
+Optimised KNN,Spatial mean flow,67,22.448186595663
+Optimised KNN,Spatial mean flow,68,22.229539078728177
+Optimised KNN,Spatial mean flow,69,21.95730803439523
+Optimised KNN,Spatial mean flow,70,21.71649820092182
+Optimised KNN,Spatial mean flow,71,21.493760261230744
+Optimised KNN,Spatial mean flow,72,21.32736861619535
+Optimised Random Forest,Velocity persistence,1,-53.58762166443276
+Optimised Random Forest,Velocity persistence,2,-37.374345822500786
+Optimised Random Forest,Velocity persistence,3,-25.451092007784524
+Optimised Random Forest,Velocity persistence,4,-15.225886823738577
+Optimised Random Forest,Velocity persistence,5,-7.3763281110305945
+Optimised Random Forest,Velocity persistence,6,-1.7404047522719734
+Optimised Random Forest,Velocity persistence,7,2.7210004170158397
+Optimised Random Forest,Velocity persistence,8,6.438993216343391
+Optimised Random Forest,Velocity persistence,9,9.32877497591732
+Optimised Random Forest,Velocity persistence,10,11.72728344640792
+Optimised Random Forest,Velocity persistence,11,13.502458933233841
+Optimised Random Forest,Velocity persistence,12,14.883083384317874
+Optimised Random Forest,Velocity persistence,13,15.988233996387002
+Optimised Random Forest,Velocity persistence,14,16.987060097501328
+Optimised Random Forest,Velocity persistence,15,17.980554978167206
+Optimised Random Forest,Velocity persistence,16,18.882385340499397
+Optimised Random Forest,Velocity persistence,17,19.82963306007648
+Optimised Random Forest,Velocity persistence,18,20.61060693977196
+Optimised Random Forest,Velocity persistence,19,21.13090365756446
+Optimised Random Forest,Velocity persistence,20,21.685841317641163
+Optimised Random Forest,Velocity persistence,21,21.87105335599293
+Optimised Random Forest,Velocity persistence,22,21.935031393795168
+Optimised Random Forest,Velocity persistence,23,21.87041248611934
+Optimised Random Forest,Velocity persistence,24,21.750289881791453
+Optimised Random Forest,Velocity persistence,25,21.47926340543457
+Optimised Random Forest,Velocity persistence,26,21.256096821068592
+Optimised Random Forest,Velocity persistence,27,21.14756402795396
+Optimised Random Forest,Velocity persistence,28,21.036360686179066
+Optimised Random Forest,Velocity persistence,29,21.052557224488478
+Optimised Random Forest,Velocity persistence,30,21.177372778120564
+Optimised Random Forest,Velocity persistence,31,21.539443382215072
+Optimised Random Forest,Velocity persistence,32,21.895734255009312
+Optimised Random Forest,Velocity persistence,33,22.235558144987333
+Optimised Random Forest,Velocity persistence,34,22.541616817676
+Optimised Random Forest,Velocity persistence,35,22.84188690221218
+Optimised Random Forest,Velocity persistence,36,23.039834686335205
+Optimised Random Forest,Velocity persistence,37,23.241033085279284
+Optimised Random Forest,Velocity persistence,38,23.45104844555479
+Optimised Random Forest,Velocity persistence,39,23.675845810918304
+Optimised Random Forest,Velocity persistence,40,23.883599629977482
+Optimised Random Forest,Velocity persistence,41,24.158940077918402
+Optimised Random Forest,Velocity persistence,42,24.416623120538773
+Optimised Random Forest,Velocity persistence,43,24.76054904428021
+Optimised Random Forest,Velocity persistence,44,25.047079599121812
+Optimised Random Forest,Velocity persistence,45,25.278670956980033
+Optimised Random Forest,Velocity persistence,46,25.500037559853496
+Optimised Random Forest,Velocity persistence,47,25.67062865720985
+Optimised Random Forest,Velocity persistence,48,25.820127838361618
+Optimised Random Forest,Velocity persistence,49,25.957166626405826
+Optimised Random Forest,Velocity persistence,50,26.09292661319976
+Optimised Random Forest,Velocity persistence,51,26.19927276642183
+Optimised Random Forest,Velocity persistence,52,26.337594703078395
+Optimised Random Forest,Velocity persistence,53,26.52803417096903
+Optimised Random Forest,Velocity persistence,54,26.76422963000077
+Optimised Random Forest,Velocity persistence,55,27.007812180412472
+Optimised Random Forest,Velocity persistence,56,27.308832271574556
+Optimised Random Forest,Velocity persistence,57,27.577722697463535
+Optimised Random Forest,Velocity persistence,58,27.847781961324557
+Optimised Random Forest,Velocity persistence,59,28.11571665523035
+Optimised Random Forest,Velocity persistence,60,28.38022083636661
+Optimised Random Forest,Velocity persistence,61,28.623995916089605
+Optimised Random Forest,Velocity persistence,62,28.844635598067004
+Optimised Random Forest,Velocity persistence,63,29.06554520716772
+Optimised Random Forest,Velocity persistence,64,29.278624853931156
+Optimised Random Forest,Velocity persistence,65,29.514833066485235
+Optimised Random Forest,Velocity persistence,66,29.74163038062606
+Optimised Random Forest,Velocity persistence,67,29.985130683731175
+Optimised Random Forest,Velocity persistence,68,30.22074113237716
+Optimised Random Forest,Velocity persistence,69,30.436317115986867
+Optimised Random Forest,Velocity persistence,70,30.630975180486086
+Optimised Random Forest,Velocity persistence,71,30.81829466604772
+Optimised Random Forest,Velocity persistence,72,30.996328234806747
+Optimised Random Forest,Spatial mean flow,1,53.0474515723937
+Optimised Random Forest,Spatial mean flow,2,51.20738255646362
+Optimised Random Forest,Spatial mean flow,3,50.574980207473615
+Optimised Random Forest,Spatial mean flow,4,48.70297152743004
+Optimised Random Forest,Spatial mean flow,5,47.074282270729014
+Optimised Random Forest,Spatial mean flow,6,45.38748287574384
+Optimised Random Forest,Spatial mean flow,7,43.934175660468355
+Optimised Random Forest,Spatial mean flow,8,42.751687712830254
+Optimised Random Forest,Spatial mean flow,9,42.04033573109722
+Optimised Random Forest,Spatial mean flow,10,41.40629311424365
+Optimised Random Forest,Spatial mean flow,11,40.98830308812641
+Optimised Random Forest,Spatial mean flow,12,40.320515229808386
+Optimised Random Forest,Spatial mean flow,13,40.02380020156344
+Optimised Random Forest,Spatial mean flow,14,39.69332254885084
+Optimised Random Forest,Spatial mean flow,15,39.34738011720176
+Optimised Random Forest,Spatial mean flow,16,38.93641515226847
+Optimised Random Forest,Spatial mean flow,17,38.71480107664208
+Optimised Random Forest,Spatial mean flow,18,38.390805903237414
+Optimised Random Forest,Spatial mean flow,19,38.04064855575437
+Optimised Random Forest,Spatial mean flow,20,37.80593683446403
+Optimised Random Forest,Spatial mean flow,21,37.58801870448802
+Optimised Random Forest,Spatial mean flow,22,37.416945968918704
+Optimised Random Forest,Spatial mean flow,23,37.21467879047673
+Optimised Random Forest,Spatial mean flow,24,36.93951150315461
+Optimised Random Forest,Spatial mean flow,25,36.65840622254073
+Optimised Random Forest,Spatial mean flow,26,36.33642279207514
+Optimised Random Forest,Spatial mean flow,27,35.992893169941254
+Optimised Random Forest,Spatial mean flow,28,35.57838590421968
+Optimised Random Forest,Spatial mean flow,29,35.1042443677023
+Optimised Random Forest,Spatial mean flow,30,34.62642403044617
+Optimised Random Forest,Spatial mean flow,31,34.16517237339411
+Optimised Random Forest,Spatial mean flow,32,33.73875574229673
+Optimised Random Forest,Spatial mean flow,33,33.31710777077659
+Optimised Random Forest,Spatial mean flow,34,32.84108916868737
+Optimised Random Forest,Spatial mean flow,35,32.45607543169496
+Optimised Random Forest,Spatial mean flow,36,32.0753597015556
+Optimised Random Forest,Spatial mean flow,37,31.73080199212217
+Optimised Random Forest,Spatial mean flow,38,31.37231719533319
+Optimised Random Forest,Spatial mean flow,39,30.99050123946635
+Optimised Random Forest,Spatial mean flow,40,30.582429922774303
+Optimised Random Forest,Spatial mean flow,41,30.214339266052757
+Optimised Random Forest,Spatial mean flow,42,29.905673557959933
+Optimised Random Forest,Spatial mean flow,43,29.603308880730474
+Optimised Random Forest,Spatial mean flow,44,29.303280975850242
+Optimised Random Forest,Spatial mean flow,45,29.054621492908193
+Optimised Random Forest,Spatial mean flow,46,28.827987582310787
+Optimised Random Forest,Spatial mean flow,47,28.66633525621658
+Optimised Random Forest,Spatial mean flow,48,28.535302158910525
+Optimised Random Forest,Spatial mean flow,49,28.410838695020622
+Optimised Random Forest,Spatial mean flow,50,28.23274139637305
+Optimised Random Forest,Spatial mean flow,51,28.018363607100717
+Optimised Random Forest,Spatial mean flow,52,27.79247599756691
+Optimised Random Forest,Spatial mean flow,53,27.5737518121525
+Optimised Random Forest,Spatial mean flow,54,27.300962366688854
+Optimised Random Forest,Spatial mean flow,55,27.0118223542272
+Optimised Random Forest,Spatial mean flow,56,26.736654624932797
+Optimised Random Forest,Spatial mean flow,57,26.460381456163173
+Optimised Random Forest,Spatial mean flow,58,26.158120165864506
+Optimised Random Forest,Spatial mean flow,59,25.890622476712633
+Optimised Random Forest,Spatial mean flow,60,25.63130112344869
+Optimised Random Forest,Spatial mean flow,61,25.389797821083036
+Optimised Random Forest,Spatial mean flow,62,25.186147966727866
+Optimised Random Forest,Spatial mean flow,63,25.024447914069302
+Optimised Random Forest,Spatial mean flow,64,24.806846708091
+Optimised Random Forest,Spatial mean flow,65,24.625878890350883
+Optimised Random Forest,Spatial mean flow,66,24.443799283553002
+Optimised Random Forest,Spatial mean flow,67,24.244695933010863
+Optimised Random Forest,Spatial mean flow,68,24.03629174001355
+Optimised Random Forest,Spatial mean flow,69,23.780154556543277
+Optimised Random Forest,Spatial mean flow,70,23.571169978057725
+Optimised Random Forest,Spatial mean flow,71,23.377874177136903
+Optimised Random Forest,Spatial mean flow,72,23.22276399596661

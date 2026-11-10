@@ -4,6 +4,7 @@
 
 - `RQ3_conformal_prediction_CN.ipynb`: executed Chinese teaching notebook covering the complete RQ3 workflow.
 - `RQ3_conformal_prediction_CN.py`: Jupytext source for reproducible editing and regeneration of the notebook.
+- `RQ3_champion_conformal_CN.ipynb`: executed extension comparing independently calibrated Optimised FNN and Boosting residual forecasts.
 
 The notebook uses the fixed RQ1 FNN as the point predictor. The 769 calibration cases determine finite-sample conformal thresholds; the 757 untouched test cases are used once for final empirical coverage and prediction-region size evaluation.
 
@@ -18,6 +19,8 @@ It includes:
 7. report-ready English Methods and Results wording.
 
 Generated tables and figures are saved under `output/rq3/`.
+
+The champion extension refits frozen training-CV configurations using training cases only, calibrates each model separately on the 769 calibration cases, and evaluates global and regime-aware 80%, 90% and 95% circular regions on the 757 test cases. Its generated files are stored in `RQ3/champion_models/output/`.
 
 ## Run
 

@@ -21,6 +21,14 @@ Run the notebooks in numerical order within one language folder. Each language w
 4. `04_fnn_trajectory_model.ipynb` — nonlinear fully connected neural network implemented in NumPy.
 5. `05_pooled_var1_velocity_model.ipynb` — pooled first-order vector autoregression fitted to training-only velocity transitions.
 6. `06_weighted_knn_trajectory_regression.ipynb` — nonparametric weighted analogue forecast with grouped selection of neighbour count and distance power.
+7. `07_extra_trees_trajectory_model_CN.ipynb` — Extra Trees trajectory regression experiment.
+8. `08_random_forest_trajectory_model_CN.ipynb` — Random Forest trajectory regression experiment.
+9. `09_physical_residual_extra_trees_CN.ipynb` — physical-baseline residual learning with Extra Trees.
+10. `10_optimised_random_forest_CN.ipynb` — grouped-CV Random Forest optimisation.
+11. `11_optimised_fnn_CN.ipynb` — grouped-CV FNN architecture and regularisation optimisation.
+12. `12_optimised_weighted_knn_CN.ipynb` — weighted KNN distance and neighbour optimisation.
+13. `13_gradient_boosting_residual_CN.ipynb` — persistence-residual gradient boosting and extreme-case diagnostics.
+14. `14_champion_models_comparison_CN.ipynb` — common-metric comparison of the four champion models and physical baselines.
 
 ## Fixed experimental protocol
 
@@ -43,6 +51,6 @@ Run the notebooks in numerical order within one language folder. Each language w
 | Weighted KNN | 12.03 | 27.00 | 41.99 | 65.21 |
 | FNN | **11.32** | **26.10** | **41.72** | **62.15** |
 
-FNN currently has the lowest held-out error. Weighted KNN is a close nonparametric comparator, while Ridge provides the strongest simple linear learned benchmark.
+The original FNN has the lowest error among the six initial models. The extension notebooks add four champion candidates: Optimised FNN, Optimised Weighted KNN, Optimised Random Forest and Boosting residual. Model selection remains based on drifter-grouped cross-validation inside the training partition; the held-out test set is used only for the final comparison.
 
 Generated files are documented in [`../../output/rq1/README.md`](../../output/rq1/README.md).

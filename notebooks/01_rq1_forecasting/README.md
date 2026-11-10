@@ -54,3 +54,26 @@ Run the notebooks in numerical order within one language folder. Each language w
 The original FNN has the lowest error among the six initial models. The extension notebooks add four champion candidates: Optimised FNN, Optimised Weighted KNN, Optimised Random Forest and Boosting residual. Model selection remains based on drifter-grouped cross-validation inside the training partition; the held-out test set is used only for the final comparison.
 
 Generated files are documented in [`../../output/rq1/README.md`](../../output/rq1/README.md).
+
+## Folder contents
+
+| Subfolder/file | Purpose |
+|---|---|
+| `en/` | English versions of the six original models. |
+| `zh/` | Chinese versions, tree-model extensions, optimised champions and the final champion leaderboard. |
+| `analysis/` | Cross-model diagnostics that consume saved test predictions rather than selecting new hyperparameters. |
+| `extensions/` | Time-series experiments such as AR/VAR order search. |
+| `RQ1_training_and_test_audit_CN.ipynb` | Verifies partition roles and confirms that the comparison uses the same 757 test cases. |
+
+## Champion-model extensions
+
+- `zh/10_optimised_random_forest_CN.ipynb` — two-stage grouped-CV Random Forest search.
+- `zh/11_optimised_fnn_CN.ipynb` — FNN architecture, regularisation and training optimisation.
+- `zh/12_optimised_weighted_knn_CN.ipynb` — neighbour count, distance power and spatial weighting search.
+- `zh/13_gradient_boosting_residual_CN.ipynb` — learns corrections to a physical baseline and diagnoses extreme errors.
+- `zh/14_champion_models_comparison_CN.ipynb` — compares RMSE, median error, ITE and worst-10% performance on common cases.
+- `analysis/15_champion_models_drogue_effect_CN.ipynb` — tests attached versus lost drogue cases for all four champions.
+
+The drogue notebook first reports the raw difference, then uses drifter-cluster bootstrap and an adjusted association controlling for regime, climatological current speed, water depth and forecast-origin speed. Lost-drogue cases have larger raw errors, but all adjusted 95% intervals include zero; the current evidence is therefore insufficient to claim that drogue status independently causes poorer forecasts.
+
+Its compact results are stored in [`../../output/rq1/zh/drogue_champion_analysis/`](../../output/rq1/zh/drogue_champion_analysis/).

@@ -12,7 +12,7 @@ This group project uses hourly observations from the NOAA Global Drifter Program
 | Target | The following 72 hourly positions |
 | Complete case | 96 consecutive hourly observations |
 | Split unit | Drifter ID |
-| Current stage | RQ1 baselines and four learned/statistical models completed and evaluated |
+| Current stage | RQ1--RQ3 complete; champion, drogue and external spatial-generalization extensions evaluated |
 
 All analysis, processing outputs and planned model comparisons in this repository use the **24-hour-to-72-hour Region A design**.
 
@@ -25,6 +25,17 @@ All analysis, processing outputs and planned model comparisons in this repositor
 - **RQ3.** Can forecast uncertainty be represented by prediction regions with empirically validated coverage, and does coverage remain reliable across regimes?
 
 Forecast cases use 24 hours of track history to predict the subsequent 72 hours. All methods will be compared on identical held-out drifters and forecast origins. A separate calibration set is reserved for conformal prediction and uncertainty evaluation.
+
+### Current headline findings
+
+- The original FNN is the strongest of the six initial Region-A models (72-hour RMSE 62.15 km).
+- Optimised FNN, Optimised Weighted KNN, Optimised Random Forest and Boosting residual form the champion set used for later diagnostics.
+- Kuroshio Core has the largest absolute errors, motivating both normalised metrics and regime-specific reliability checks.
+- Conformal prediction converts point forecasts into empirically calibrated search regions and reports both coverage and region size.
+- Lost-drogue cases have larger raw errors, but adjusted drifter-cluster intervals do not establish an independent drogue-status effect.
+- In ten external zero-shot regions, Optimised Random Forest is the only learned champion that reliably beats velocity persistence; the Region-A FNN does not transfer safely without adaptation.
+
+The detailed folder and execution guide is [`notebooks/README.md`](notebooks/README.md).
 
 ## 2. Motivation
 
@@ -206,13 +217,19 @@ Where sample sizes permit, performance will also be compared across spatial sect
 - Weighted KNN trajectory regression with grouped neighbour selection
 - Common held-out evaluation on 757 test cases using separation error, RMSE and ITE
 - Matched English and Chinese notebooks, tables and poster-ready figures
+- Tree-based and residual-learning extensions with four champion configurations
+- RQ2 fixed-model comparison across four physical ocean regimes
+- RQ2 lead-time, normalised-error and regional-refitting extensions
+- RQ3 global and regime-aware conformal prediction
+- Champion-model drogue-status analysis with adjusted cluster bootstrap
+- Ten-region zero-shot spatial-generalization experiment
 
 ### Remaining
 
 - Manual review and sensitivity analysis for high-speed and land-mask flags
-- RQ2 dynamical-regime comparison
-- RQ3 conformal prediction using the untouched calibration partition
-- Final poster synthesis and uncertainty reporting
+- Operational validation with real-time environmental forcing
+- Replication on additional time periods and external regions
+- Final report synthesis and concise uncertainty reporting
 
 ## 13. Repository structure
 
@@ -224,18 +241,19 @@ data3001-group-project/
 │   ├── 01_rq1_forecasting/
 │   │   ├── README.md
 │   │   ├── en/                 # English teacher-facing notebooks (01--06)
-│   │   └── zh/                 # 中文组内交流 notebooks（01--06）
-│   ├── 02_rq2_regime_analysis/
-│   └── 03_rq3_conformal_prediction/
+│   │   ├── zh/                 # 中文原始模型与冠军模型
+│   │   └── analysis/           # cross-model and drogue diagnostics
+│   ├── 02_rq2_regime_analysis/ # core regime analysis and extensions
+│   ├── 03_rq3_conformal_prediction/ # initial and champion conformal analyses
+│   └── 04_generalization/      # external zero-shot transfer
 ├── scripts/
 ├── data/
 │   ├── dictionary/
 │   └── processed/              # Large generated tables remain local
 └── output/
-    └── rq1/
-        ├── README.md
-        ├── en/                 # English metrics and figures
-        └── zh/                 # 中文指标和图片
+    ├── rq1/                    # RQ1 metrics, figures and drogue analysis
+    ├── rq3/                    # coverage and prediction-region outputs
+    └── generalization/         # external-region metrics and figures
 ```
 
 Large raw and derived datasets are intentionally excluded from Git. In particular, `RegionA.csv` and generated Parquet tables remain local. The tracked `qc_summary.csv` provides a compact audit trail of the processing results.

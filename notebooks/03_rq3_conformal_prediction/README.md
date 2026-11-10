@@ -22,6 +22,17 @@ Generated tables and figures are saved under `output/rq3/`.
 
 The champion extension refits frozen training-CV configurations using training cases only, calibrates each model separately on the 769 calibration cases, and evaluates global and regime-aware 80%, 90% and 95% circular regions on the 757 test cases. Its generated files are stored in `RQ3/champion_models/output/`.
 
+## What the two notebooks answer
+
+| Notebook | Point predictor | Main question |
+|---|---|---|
+| `RQ3_conformal_prediction_CN.ipynb` | Initial FNN | Can a fixed trajectory model achieve target marginal coverage, and how large must its search radius be? |
+| `RQ3_champion_conformal_CN.ipynb` | Optimised FNN and Boosting residual | If models are calibrated separately, which reaches comparable coverage with the smaller region, including in Kuroshio Core? |
+
+Conformal prediction does not improve the centre forecast. It calibrates uncertainty around that forecast. A better point predictor should normally require a smaller radius to reach the same nominal coverage, but coverage and region size must both be reported.
+
+RQ3 uses calibration cases only to determine quantiles. The test cases remain untouched until final coverage evaluation. Regime-aware (Mondrian) calibration is reported separately because smaller regime sample sizes can create less stable thresholds.
+
 ## Run
 
 From the project root:

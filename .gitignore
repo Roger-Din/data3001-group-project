@@ -35,3 +35,6 @@ references/papers/*.pdf
 /RegionA.csv
 /data/processed/*
 !/data/processed/qc_summary.csv
+
+# Reproducible but large external-region download/cache
+/data/external/spatial_generalization_cache/

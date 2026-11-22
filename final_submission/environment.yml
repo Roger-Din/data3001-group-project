@@ -1,0 +1,8 @@
+name: data3001-s01-g5
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+      - -r requirements.txt

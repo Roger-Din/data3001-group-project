@@ -1,0 +1,17 @@
+{
+  "selected_model": {
+    "family": "VAR",
+    "p": 20,
+    "d": 0,
+    "alpha": 5000.0
+  },
+  "selection_metric": "mean grouped-CV 72-hour endpoint RMSE on training partition",
+  "cv_rmse_72h_km": 71.04512258665662,
+  "n_test_cases": 757,
+  "rmse_72h_km": 66.07159402100235,
+  "median_72h_km": 44.25460599672324,
+  "trajectory_rmse_km": 37.47375566474441,
+  "median_ite_kmh": 1495.350942472961,
+  "haversine_test_rmse_72h_km": 66.0697192828249,
+  "haversine_test_median_72h_km": 44.25459701862154
+}

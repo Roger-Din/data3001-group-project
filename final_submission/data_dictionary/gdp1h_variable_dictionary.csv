@@ -1,0 +1,61 @@
+﻿类别序号,变量类别,变量名,数据层级,维度,数据类型,单位,中文含义,英文说明,主要分析用途,使用优先级,注意事项,来源数据集
+1,核心观测变量,time,逐小时观测,obs,datetime64[ns],—,观测时间,Time,按时间排序、筛选年份或季节、绘制时间序列,核心,通常为UTC时间；分析前确认时区,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+1,核心观测变量,lon,逐小时观测,obs,float64,degrees_east,浮标所在经度,Longitude,确定位置、筛选海域、绘制轨迹和空间网格,核心,西经通常表示为负数,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+1,核心观测变量,lat,逐小时观测,obs,float64,degrees_north,浮标所在纬度,Latitude,确定位置、筛选海域、绘制轨迹和空间网格,核心,南纬通常表示为负数,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+1,核心观测变量,ve,逐小时观测,obs,float32,m/s,向东速度分量,Eastward velocity,计算洋流方向、速度大小和矢量图,核心,正值向东，负值向西,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+1,核心观测变量,vn,逐小时观测,obs,float32,m/s,向北速度分量,Northward velocity,计算洋流方向、速度大小和矢量图,核心,正值向北，负值向南,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+1,核心观测变量,sst,逐小时观测,obs,float32,Kelvin,拟合后的海表温度,Fitted sea water temperature,分析海温空间分布、季节变化及其与流速的关系,核心,摄氏度 = Kelvin - 273.15；结合flg_sst筛选,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+2,温度组成变量,sst1,逐小时观测,obs,float32,Kelvin,拟合后的非日变化海表温度,Fitted non-diurnal sea water temperature,研究较平滑的背景或低频海温变化,重要,结合flg_sst1和err_sst1使用,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+2,温度组成变量,sst2,逐小时观测,obs,float32,Kelvin,拟合后的海表温度日变化异常,Fitted diurnal sea water temperature anomaly,研究一天以内的升温和降温信号,条件性,它是温度异常分量，不是总海温；结合flg_sst2使用,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_lat,逐小时观测,obs,float32,degrees_north,纬度的95%置信区间,95% confidence interval in latitude,判断位置估计的不确定程度,重要,数值越大通常表示位置越不确定,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_lon,逐小时观测,obs,float32,degrees_east,经度的95%置信区间,95% confidence interval in longitude,判断位置估计的不确定程度,重要,数值越大通常表示位置越不确定,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_ve,逐小时观测,obs,float32,m/s,向东速度的95%置信区间,95% confidence interval in eastward velocity,评估向东速度估计是否可靠,重要,可用于误差条、敏感性分析或质量筛选,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_vn,逐小时观测,obs,float32,m/s,向北速度的95%置信区间,95% confidence interval in northward velocity,评估向北速度估计是否可靠,重要,可用于误差条、敏感性分析或质量筛选,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_sst,逐小时观测,obs,float32,Kelvin,总海表温度拟合值的标准不确定度,Standard uncertainty of fitted sea water temperature,评估sst的测量或拟合不确定性,重要,缺失情况通常与sst缺失相近,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_sst1,逐小时观测,obs,float32,Kelvin,非日变化海温拟合值的标准不确定度,Standard uncertainty of fitted non-diurnal sea water temperature,评估sst1的可靠性,条件性,与sst1配套使用,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+3,不确定性变量,err_sst2,逐小时观测,obs,float32,Kelvin,日变化海温异常拟合值的标准不确定度,Standard uncertainty of fitted diurnal sea water temperature,评估sst2的可靠性,条件性,与sst2配套使用,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+4,质量控制变量,flg_sst,逐小时观测,obs,int8,—,总海表温度质量标记,Fitted sea water temperature quality flag,筛选适合温度分析的sst记录,核心,本次样本中5表示可用高质量记录；完整编码应以官方元数据为准,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+4,质量控制变量,flg_sst1,逐小时观测,obs,int8,—,非日变化海温质量标记,Fitted non-diurnal sea water temperature quality flag,筛选适合分析的sst1记录,重要,完整编码应以官方元数据为准,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+4,质量控制变量,flg_sst2,逐小时观测,obs,int8,—,日变化海温异常质量标记,Fitted diurnal sea water temperature anomaly quality flag,筛选适合分析的sst2记录,条件性,完整编码应以官方元数据为准,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+4,质量控制变量,gap,逐小时观测,obs,float32,s,前后原始定位之间的时间间隔,Time interval between previous and next location,识别基于稀疏原始定位插值得到的观测,重要,较大的gap意味着该小时记录附近原始定位较少,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,drogue_status,逐小时观测,obs,bool,—,该时刻水帆是否仍连接,Status indicating the presence of the drogue,区分有水帆和失去水帆后的漂移行为,核心,True通常表示水帆存在；研究洋流时常优先保留有水帆记录,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,drogue_lost_date,轨迹元数据,traj,datetime64[ns],—,水帆丢失日期和时间,Date and time of drogue loss,确定每个浮标失去水帆的时间点,重要,缺失可能表示未丢失；异常的1970日期需核对编码,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DrogueType,轨迹元数据,traj,|S7,—,水帆类型,Drogue type,比较不同水帆设计对漂移行为的影响,条件性,数据集未提供完整long_name说明,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DrogueLength,轨迹元数据,traj,float32,m,水帆长度,Length of drogue,描述和控制浮标硬件差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DrogueCenterDepth,轨迹元数据,traj,float32,m,水帆平均中心深度,Average depth of the drogue,判断浮标主要随哪一深度层的水体运动,重要,标准GDP水帆常用于跟踪近表层约15米水流，但应以该字段为准,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DrogueBallast,轨迹元数据,traj,float32,kg,水帆配重重量,Weight of the drogue's ballast,描述和控制浮标硬件差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DrogueDetectSensor,轨迹元数据,traj,|S20,—,检测水帆状态的传感器类型,Drogue detection sensor,判断drogue_status的检测来源,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DragAreaAboveDrogue,轨迹元数据,traj,float32,m^2,水帆以上部分的阻力面积,Drag area above drogue,描述风和表层作用对浮标的潜在影响,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DragAreaOfDrogue,轨迹元数据,traj,float32,m^2,水帆自身的阻力面积,Drag area of drogue,描述水帆对随流性的贡献,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+5,水帆状态与参数,DragAreaRatio,轨迹元数据,traj,float32,m（源元数据）,阻力面积比,Drag area ratio,比较浮标对水流与风作用的相对响应,条件性,比值通常应无量纲，但源元数据单位标为m；使用前核对官方定义,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,deploy_date,轨迹元数据,traj,datetime64[ns],—,实际投放日期和时间,Deployment date and time,研究投放批次、设备寿命和时间覆盖,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,deploy_lon,轨迹元数据,traj,float32,degrees_east,实际投放经度,Deployment longitude,绘制投放点和研究投放策略,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,deploy_lat,轨迹元数据,traj,float32,degrees_north,实际投放纬度,Deployment latitude,绘制投放点和研究投放策略,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,start_date,轨迹元数据,traj,datetime64[ns],—,质量控制后的首个有效时间,First good date and time derived by DAC quality control,确定可用轨迹的开始时间,重要,可能晚于实际投放时间,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,start_lon,轨迹元数据,traj,float32,degrees_east,质量控制后的首个有效经度,First good longitude derived by DAC quality control,确定可用轨迹的起点,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,start_lat,轨迹元数据,traj,float32,degrees_north,质量控制后的首个有效纬度,First good latitude derived by DAC quality control,确定可用轨迹的起点,重要,CloudDrift显示说明疑似误写为Last good latitude；此处按字段语义解释,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,end_date,轨迹元数据,traj,datetime64[ns],—,质量控制后的最后有效时间,Last good date and time derived by DAC quality control,确定可用轨迹的结束时间和寿命,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,end_lon,轨迹元数据,traj,float32,degrees_east,质量控制后的最后有效经度,Last good longitude derived by DAC quality control,确定可用轨迹的终点,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,end_lat,轨迹元数据,traj,float32,degrees_north,质量控制后的最后有效纬度,Last good latitude derived by DAC quality control,确定可用轨迹的终点,重要,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+6,轨迹起止与投放,rowsize,轨迹元数据,traj,int32,—,该条浮标轨迹包含的逐小时观测数量,Number of observations per trajectory,连接traj层元数据与obs层观测，估计轨迹长度,重要,不是海洋观测值；它描述每条轨迹包含多少行,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,id,轨迹元数据,traj,int64,—,Global Drifter Program浮标唯一编号,Global Drifter Program Buoy ID,识别浮标、分组轨迹、计算不同浮标数量,核心,CloudDrift变量名为小写id；NOAA ERDDAP页面显示为ID,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,WMO,轨迹元数据,traj,int32,—,世界气象组织浮标识别号,World Meteorological Organization buoy identification number,与国际浮标记录或其他数据库匹配,重要,识别码，不应当作连续数值变量计算平均值,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,expno,轨迹元数据,traj,int32,—,实验编号,Experiment number,按实验或投放活动分组,条件性,识别码，不应当作连续数值变量,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,CurrentProgram,轨迹元数据,traj,float64,—,当前项目或计划代码,Current Program,追踪数据所属项目和来源,条件性,虽为数值类型，但通常应按类别代码处理,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,typebuoy,轨迹元数据,traj,|S10,—,浮标类型代码,Buoy type code,按浮标型号比较数据表现,条件性,需要官方代码表才能解释具体取值,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,typedeath,轨迹元数据,traj,int8,—,浮标终止或失效原因代码,Type of death,分析浮标寿命和失效原因,条件性,常见编码包括在用、搁浅、被回收、停止传输、电池问题等；以官方代码表为准,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+7,标识与项目归属,location_type,轨迹元数据,traj,bool,—,卫星定位系统类型标记,Satellite-based location system,区分GPS或Argos等定位来源,重要,布尔值对应哪一种系统需读取变量属性或官方代码表,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,BuoyTypeManufacturer,轨迹元数据,traj,|S20,—,浮标类型或制造商,Buoy type manufacturer,控制不同厂商或型号带来的设备差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,BuoyTypeSensorArray,轨迹元数据,traj,|S20,—,浮标传感器阵列类型,Buoy type sensor array,判断浮标具备哪些传感能力,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,FloatDiameter,轨迹元数据,traj,float32,cm,海面浮体直径,Diameter of surface floater,描述和控制浮标结构差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,ManufactureMonth,轨迹元数据,traj,float32,—,制造月份,Manufacture month,研究设备年龄和批次,条件性,使用前检查其年份信息是否由其他字段提供,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,ManufactureSensorType,轨迹元数据,traj,|S20,—,制造时配置的传感器类型,Manufacture Sensor Type,了解设备配置并分组比较,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,ManufactureVoltage,轨迹元数据,traj,float32,V,制造时的设备电压,Manufacture voltage,分析设备规格或潜在寿命差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,SensorUpgrade,轨迹元数据,traj,|S20,—,传感器升级信息,Sensor upgrade,识别升级后的设备批次,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,SubsfcFloatPresence,轨迹元数据,traj,bool,—,是否存在水下浮体,Subsurface float presence,描述浮标结构并控制漂移差异,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+8,设备与传感器,Transmissions,轨迹元数据,traj,|S20,—,传输系统或传输方式,Transmissions,了解数据通信来源和设备配置,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+9,投放组织与管理,DeployingCountry,轨迹元数据,traj,|S20,—,投放国家,Deploying country,分析各国对观测网络的贡献,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+9,投放组织与管理,DeployingShip,轨迹元数据,traj,|S20,—,投放船只名称,Name of deployment ship,追踪投放活动和来源,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+9,投放组织与管理,DeploymentComments,轨迹元数据,traj,int16,—,投放备注或其编码,Deployment comments,了解特殊投放情况,条件性,当前CloudDrift数据类型为int16，可能是编码值；解释前需查代码表,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+9,投放组织与管理,DeploymentStatus,轨迹元数据,traj,|S20,—,投放状态,Deployment status,筛选已投放、计划或其他状态记录,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h
+9,投放组织与管理,PurchaserFunding,轨迹元数据,traj,|S20,—,采购或资助来源,Purchaser funding,分析观测网络的资助来源,条件性,,NOAA Global Drifter Program 1-hour interpolated QC data / CloudDrift gdp1h

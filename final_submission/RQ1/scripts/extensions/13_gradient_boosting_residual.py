@@ -1,0 +1,331 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # 13 Gradient Boosting Residual
+# 
+# Explores a post-hoc gradient-boosting residual correction; this model is retained as exploratory rather than confirmatory.
+# 
+# **Provenance.** This is an English-facing execution copy of the original project notebook. The computational cells are preserved so that the analysis remains reproducible. Chinese narrative cells have been replaced by concise English stage notes; the original notebook remains unchanged in the source project.
+
+# ## Analysis stage 1
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+from pathlib import Path 
+import json ,os ,time ,warnings 
+import matplotlib .pyplot as plt 
+import numpy as np 
+import pandas as pd 
+from IPython import get_ipython 
+from IPython .display import display ,Markdown 
+from sklearn .decomposition import PCA 
+from sklearn .ensemble import HistGradientBoostingRegressor 
+from sklearn .multioutput import MultiOutputRegressor 
+
+ip =get_ipython ()
+if ip is not None :ip .run_line_magic ('matplotlib','inline')
+PROJECT_ROOT =next ((p for p in [Path .cwd (),*Path .cwd ().parents ]if (p /'data'/'processed').exists ()),None )
+if PROJECT_ROOT is None :raise FileNotFoundError ('\u627e\u4e0d\u5230data/processed。')
+PROCESSED =PROJECT_ROOT /'data'/'processed';RQ2 =PROJECT_ROOT /'RQ2';OUTPUT =PROJECT_ROOT /'output'/'rq1'/'zh';OUTPUT .mkdir (parents =True ,exist_ok =True )
+EARTH_RADIUS_KM =6371. ;SEED =3001 ;FAST_MODE =os .environ .get ('GB_FAST_MODE','0')=='1'
+plt .style .use ('seaborn-v0_8-whitegrid');plt .rcParams ['font.sans-serif']=['PingFang SC','Arial Unicode MS','DejaVu Sans'];plt .rcParams ['axes.unicode_minus']=False 
+print ('\u9879\u76ee\u76ee\u5f55：',PROJECT_ROOT ,'\u6a21\u5f0f：','\u5feb\u901f\u68c0\u67e5'if FAST_MODE else '\u5b8c\u6574\u5206\u6790')
+
+
+# ## Analysis stage 2
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+def latlon_to_local_km (origin_lat ,origin_lon ,latitude ,longitude ):
+    lat0 ,lon0 =np .deg2rad (origin_lat ),np .deg2rad (origin_lon );lat1 ,lon1 =np .deg2rad (latitude ),np .deg2rad (longitude )
+    dlon =(lon1 -lon0 +np .pi )%(2 *np .pi )-np .pi ;dlat =lat1 -lat0 
+    a =np .sin (dlat /2 )**2 +np .cos (lat0 )*np .cos (lat1 )*np .sin (dlon /2 )**2 ;angle =2 *np .arcsin (np .sqrt (np .clip (a ,0 ,1 )))
+    bearing =np .arctan2 (np .sin (dlon )*np .cos (lat1 ),np .cos (lat0 )*np .sin (lat1 )-np .sin (lat0 )*np .cos (lat1 )*np .cos (dlon ));d =EARTH_RADIUS_KM *angle 
+    return d *np .sin (bearing ),d *np .cos (bearing )
+def local_km_to_latlon (origin_lat ,origin_lon ,east ,north ):
+    lat0 ,lon0 =np .deg2rad (origin_lat ),np .deg2rad (origin_lon );dist =np .hypot (east ,north );b =np .arctan2 (east ,north );a =dist /EARTH_RADIUS_KM 
+    lat =np .arcsin (np .sin (lat0 )*np .cos (a )+np .cos (lat0 )*np .sin (a )*np .cos (b ));lon =lon0 +np .arctan2 (np .sin (b )*np .sin (a )*np .cos (lat0 ),np .cos (a )-np .sin (lat0 )*np .sin (lat ))
+    return np .rad2deg (lat ),(np .rad2deg (lon )+180 )%360 -180 
+def haversine_km (lat1 ,lon1 ,lat2 ,lon2 ):
+    lat1 ,lon1 ,lat2 ,lon2 =map (np .deg2rad ,[lat1 ,lon1 ,lat2 ,lon2 ]);a =np .sin ((lat2 -lat1 )/2 )**2 +np .cos (lat1 )*np .cos (lat2 )*np .sin ((lon2 -lon1 )/2 )**2 
+    return 2 *EARTH_RADIUS_KM *np .arcsin (np .sqrt (np .clip (a ,0 ,1 )))
+
+origins =pd .read_parquet (PROCESSED /'forecast_origins.parquet').sort_values ('forecast_case_id').reset_index (drop =True )
+obs =pd .read_parquet (PROCESSED /'region_A_observations.parquet',columns =['ID','segment_id','segment_step','latitude','longitude','ve','vn'])
+n =len (origins )
+hist =origins [['forecast_case_id','ID','segment_id','history_start_step','origin_latitude','origin_longitude']].loc [origins .index .repeat (24 )].reset_index (drop =True )
+hist ['history_index']=np .tile (np .arange (24 ),n );hist ['segment_step']=hist .history_start_step +hist .history_index 
+hist =hist .merge (obs ,on =['ID','segment_id','segment_step'],how ='left',validate ='many_to_one').sort_values (['forecast_case_id','history_index']).reset_index (drop =True )
+hist ['east'],hist ['north']=latlon_to_local_km (hist .origin_latitude ,hist .origin_longitude ,hist .latitude ,hist .longitude )
+hv =hist [['east','north','ve','vn']].to_numpy ().reshape (n ,24 ,4 )
+X =np .column_stack ([origins .origin_latitude ,origins .origin_longitude ,hv .reshape (n ,-1 )]).astype (float )
+
+targ =origins [['forecast_case_id','ID','segment_id','target_start_step','origin_latitude','origin_longitude']].loc [origins .index .repeat (72 )].reset_index (drop =True )
+targ ['lead_time_hours']=np .tile (np .arange (1 ,73 ),n );targ ['segment_step']=targ .target_start_step +targ .lead_time_hours -1 
+targ =targ .merge (obs [['ID','segment_id','segment_step','latitude','longitude']],on =['ID','segment_id','segment_step'],how ='left',validate ='many_to_one').sort_values (['forecast_case_id','lead_time_hours']).reset_index (drop =True )
+targ ['east'],targ ['north']=latlon_to_local_km (targ .origin_latitude ,targ .origin_longitude ,targ .latitude ,targ .longitude )
+Y =targ [['east','north']].to_numpy ().reshape (n ,144 ).astype (float )
+
+regimes =pd .read_csv (RQ2 /'data'/'forecast_case_regimes.csv').sort_values ('forecast_case_id').reset_index (drop =True )
+assert regimes .forecast_case_id .equals (origins .forecast_case_id )
+hours =np .arange (1 ,73 )[None ,:];lastv =hv [:,-1 ,2 :4 ]
+persistence_Y =np .stack ([lastv [:,0 ,None ]*3.6 *hours ,lastv [:,1 ,None ]*3.6 *hours ],axis =-1 ).reshape (n ,144 )
+u =regimes .u_clim .fillna (0 ).to_numpy ();v =regimes .v_clim .fillna (0 ).to_numpy ()
+climatology_Y =np .stack ([u [:,None ]*3.6 *hours ,v [:,None ]*3.6 *hours ],axis =-1 ).reshape (n ,144 )
+BASELINES ={'persistence':persistence_Y ,'glorys_climatology':climatology_Y }
+
+# Implementation note translated in the organised English notebook.
+env_cont =regimes [['depth_m','u_clim','v_clim','current_speed_clim','distance_to_kuroshio_km']].copy ()
+env_cat =pd .get_dummies (pd .DataFrame ({'regime':regimes .regime .astype (str ),'drogue':origins .drogue_status_at_origin .astype (str )}),dtype =float )
+X_aug =np .column_stack ([X ,env_cont .to_numpy (),env_cat .to_numpy ()]).astype (float )
+train_idx =np .flatnonzero (origins .partition .eq ('training'));cal_idx =np .flatnonzero (origins .partition .eq ('calibration'));test_idx =np .flatnonzero (origins .partition .eq ('test'))
+assert X .shape ==(5117 ,98 )and Y .shape ==(5117 ,144 )and (len (train_idx ),len (cal_idx ),len (test_idx ))==(3591 ,769 ,757 )
+print ('X_aug',X_aug .shape ,'Y',Y .shape ,'train/cal/test',len (train_idx ),len (cal_idx ),len (test_idx ))
+
+
+# ## Analysis stage 3
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+fnn_case =pd .read_csv (OUTPUT /'optimised_fnn_test_case_metrics.csv').rename (columns ={'error_72h_km':'fnn_error_72h_km','ite_km_h':'fnn_ite_km_h'})
+knn_case =pd .read_csv (OUTPUT /'optimised_knn_test_case_metrics.csv').rename (columns ={'error_72h_km':'knn_error_72h_km','ite_km_h':'knn_ite_km_h'})
+diag =origins .loc [test_idx ,['forecast_case_id','ID','drogue_status_at_origin','origin_latitude','origin_longitude','origin_ve','origin_vn']].copy ()
+diag =diag .merge (regimes [['forecast_case_id','regime','depth_m','current_speed_clim','distance_to_kuroshio_km']],on ='forecast_case_id').merge (fnn_case [['forecast_case_id','fnn_error_72h_km','fnn_ite_km_h']],on ='forecast_case_id').merge (knn_case [['forecast_case_id','knn_error_72h_km','knn_ite_km_h']],on ='forecast_case_id')
+diag ['extreme_fnn']=diag .fnn_error_72h_km >=diag .fnn_error_72h_km .quantile (.9 );diag ['extreme_knn']=diag .knn_error_72h_km >=diag .knn_error_72h_km .quantile (.9 )
+diag ['extreme_either']=diag .extreme_fnn |diag .extreme_knn ;diag ['extreme_both']=diag .extreme_fnn &diag .extreme_knn 
+
+# Implementation note translated in the organised English notebook.
+vel =hv [test_idx ,:,2 :4 ];speed =np .linalg .norm (vel ,axis =2 );accel =np .linalg .norm (np .diff (vel ,axis =1 ),axis =2 )
+dot =np .sum (vel [:,1 :]*vel [:,:-1 ],axis =2 );denom =speed [:,1 :]*speed [:,:-1 ]
+angles =np .full_like (dot ,np .nan );valid =denom >.0004 ;angles [valid ]=np .rad2deg (np .arccos (np .clip (dot [valid ]/denom [valid ],-1 ,1 )))
+diag ['history_mean_speed_m_s']=np .mean (speed ,axis =1 );diag ['history_max_speed_m_s']=np .max (speed ,axis =1 );diag ['history_max_velocity_change_m_s']=np .max (accel ,axis =1 )
+diag ['history_max_turn_deg']=np .nanmax (angles ,axis =1 )
+
+# Implementation note translated in the organised English notebook.
+trlat =origins .loc [train_idx ,'origin_latitude'].to_numpy ();trlon =origins .loc [train_idx ,'origin_longitude'].to_numpy ()
+density =[]
+for lat ,lon in zip (diag .origin_latitude ,diag .origin_longitude ):density .append (int (np .sum (haversine_km (lat ,lon ,trlat ,trlon )<=100 )))
+diag ['training_origins_within_100km']=density 
+
+# Implementation note translated in the organised English notebook.
+mean =X [train_idx ].mean (0 );scale =X [train_idx ].std (0 );scale [scale <1e-12 ]=1 ;fw =np .ones (98 );fw [:2 ]=8 
+A =(X [train_idx ]-mean )/scale *np .sqrt (fw );B =(X [test_idx ]-mean )/scale *np .sqrt (fw );tr2 =np .sum (A *A ,axis =1 )
+nearest =[]
+for start in range (0 ,len (B ),256 ):
+    q =B [start :start +256 ];d2 =np .maximum ((np .sum (q *q ,axis =1 ,keepdims =True )+tr2 [None ,:]-2 *q @A .T )/98 ,0 );nearest .extend (np .sqrt (np .min (d2 ,axis =1 )))
+diag ['optimised_knn_nearest_distance']=nearest 
+print ('FNN/KNN top-10% threshold:',diag .fnn_error_72h_km .quantile (.9 ),diag .knn_error_72h_km .quantile (.9 ),'km')
+display (diag [['extreme_fnn','extreme_knn','extreme_both']].sum ().to_frame ('cases'))
+
+
+# In[ ]:
+
+
+def categorical_enrichment(column,flag):
+    out=diag.groupby(column,dropna=False).agg(cases=(flag,'size'),extreme_cases=(flag,'sum'),extreme_rate=(flag,'mean')).reset_index()
+    out['overall_extreme_rate']=diag[flag].mean(); out['rate_ratio']=out.extreme_rate/out.overall_extreme_rate
+    return out.sort_values('rate_ratio',ascending=False)
+
+regime_enrichment=categorical_enrichment('regime','extreme_either'); drogue_enrichment=categorical_enrichment('drogue_status_at_origin','extreme_either')
+display(Markdown('### Regime enrichment')); display(regime_enrichment.round(3))
+display(Markdown('### Drogue enrichment')); display(drogue_enrichment.round(3))
+
+continuous=['current_speed_clim','depth_m','distance_to_kuroshio_km','training_origins_within_100km','optimised_knn_nearest_distance','history_mean_speed_m_s','history_max_speed_m_s','history_max_velocity_change_m_s','history_max_turn_deg']
+rows=[]
+for x in continuous:
+    rows.append({'variable':x,'all_median':diag[x].median(),'non_extreme_median':diag.loc[~diag.extreme_either,x].median(),'extreme_median':diag.loc[diag.extreme_either,x].median(),'extreme/non_extreme_ratio':diag.loc[diag.extreme_either,x].median()/diag.loc[~diag.extreme_either,x].median() if diag.loc[~diag.extreme_either,x].median()!=0 else np.nan})
+continuous_summary=pd.DataFrame(rows); display(continuous_summary.round(3))
+
+fig,axes=plt.subplots(2,2,figsize=(13,9))
+reg=regime_enrichment.sort_values('extreme_rate'); axes[0,0].barh(reg.regime,100*reg.extreme_rate,color='#4c9bd3'); axes[0,0].axvline(100*diag.extreme_either.mean(),color='black',ls='--'); axes[0,0].set_title('Extreme-case rate by regime'); axes[0,0].set_xlabel('%')
+axes[0,1].scatter(diag.optimised_knn_nearest_distance,diag.knn_error_72h_km,c=np.where(diag.extreme_knn,'#d81b60','#777777'),alpha=.55,s=18); axes[0,1].set(xlabel='Nearest training distance',ylabel='KNN 72-h error (km)',title='Neighbour distance and KNN failure')
+axes[1,0].scatter(diag.current_speed_clim,diag.fnn_error_72h_km,c=np.where(diag.extreme_fnn,'#d81b60','#777777'),alpha=.55,s=18); axes[1,0].set(xlabel='GLORYS climatological speed (m/s)',ylabel='FNN 72-h error (km)',title='Current speed and FNN failure')
+axes[1,1].scatter(diag.history_max_turn_deg,diag[['fnn_error_72h_km','knn_error_72h_km']].mean(axis=1),c=np.where(diag.extreme_either,'#d81b60','#777777'),alpha=.55,s=18); axes[1,1].set(xlabel='Maximum 1-h turning angle (deg)',ylabel='Mean FNN/KNN error (km)',title='Sudden turning and failure')
+plt.tight_layout(); fig.savefig(OUTPUT/'extreme_case_diagnostics.png',dpi=180,bbox_inches='tight'); plt.show()
+
+
+# In[ ]:
+
+
+core =regime_enrichment .loc [regime_enrichment .regime .eq ('Kuroshio Core')].iloc [0 ]
+lost =drogue_enrichment .loc [drogue_enrichment .drogue_status_at_origin .eq ('lost')].iloc [0 ]
+attached =drogue_enrichment .loc [drogue_enrichment .drogue_status_at_origin .eq ('attached')].iloc [0 ]
+def med (variable ,extreme ):return float (diag .loc [diag .extreme_either .eq (extreme ),variable ].median ())
+display (Markdown (f"""### \u6781\u7aef\u8bef\u5dee\u8bca\u65ad\u7ed3\u8bba
+
+- FNN\u6216KNN\u8fdb\u5165\u6700\u5dee10%\u7684case\u4e2d，**Kuroshio Core** \u7684\u6781\u7aef\u7387\u4e3a **{100 *core .extreme_rate :.1f}%**，\u7ea6\u4e3a\u5168\u4f53\u5e73\u5747\u7684 **{core .rate_ratio :.2f}\u500d**。
+- \u6781\u7aefcases\u7684GLORYS\u957f\u671f\u5e73\u5747\u6d41\u901f\u4e2d\u4f4d\u6570\u4e3a **{med ('current_speed_clim',True ):.3f} m/s**，\u975e\u6781\u7aefcases\u4e3a **{med ('current_speed_clim',False ):.3f} m/s**；\u5386\u53f2\u5e73\u5747\u901f\u5ea6\u4e5f\u7ea6\u9ad8 **{med ('history_mean_speed_m_s',True )/med ('history_mean_speed_m_s',False ):.2f}\u500d**。
+- \u6781\u7aefcases\u79bbKuroshio\u6838\u5fc3\u66f4\u8fd1：\u4e2d\u4f4d\u8ddd\u79bb **{med ('distance_to_kuroshio_km',True ):.1f} km**，\u975e\u6781\u7aefcases\u4e3a **{med ('distance_to_kuroshio_km',False ):.1f} km**。
+- KNN\u6781\u7aefcases\u7684\u6700\u8fd1\u8bad\u7ec3\u90bb\u5c45\u8ddd\u79bb\u66f4\u5927（\u7ea6 **{med ('optimised_knn_nearest_distance',True )/med ('optimised_knn_nearest_distance',False ):.2f}\u500d**），\u652f\u6301“\u76f8\u4f3c\u8bad\u7ec3\u6837\u672c\u4e0d\u8db3\u4f1a\u4f24\u5bb3KNN”\u7684\u89e3\u91ca。
+- `lost` drogue\u72b6\u6001\u7684\u63cf\u8ff0\u6027\u6781\u7aef\u7387\u4e3a **{100 *lost .extreme_rate :.1f}%**，`attached`\u4e3a **{100 *attached .extreme_rate :.1f}%**；\u4f46\u5b83\u53ef\u80fd\u4e0eregime\u548c\u5e74\u4ee3\u6df7\u6742，\u4e0d\u80fd\u89e3\u91ca\u6210drogue\u8131\u843d\u5bfc\u81f4\u8bef\u5dee。
+- \u6700\u5927\u8f6c\u5411\u89d2\u5728\u6781\u7aefcases\u4e2d\u53cd\u800c\u66f4\u4f4e，\u56e0\u6b64\u672c\u6570\u636e**\u4e0d\u652f\u6301\u7a81\u7136\u8f6c\u5411\u662f\u4e3b\u8981\u5931\u8d25\u539f\u56e0**；\u66f4\u7b26\u5408“\u9ad8\u901f、\u6301\u7eed\u5e73\u6d41\u5bfc\u81f4\u7edd\u5bf9\u4f4d\u7f6e\u8bef\u5dee\u8fc5\u901f\u653e\u5927”。
+"""))
+
+
+# ## Analysis stage 4
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+counts=origins.loc[train_idx].groupby('ID').size().sort_values(ascending=False); fold_drifters=[[] for _ in range(5)]; fold_counts=np.zeros(5,dtype=int)
+for did,count in counts.items(): f=int(np.argmin(fold_counts)); fold_drifters[f].append(did); fold_counts[f]+=int(count)
+display(pd.DataFrame({'fold':range(1,6),'validation_drifters':[len(x) for x in fold_drifters],'validation_cases':fold_counts}))
+
+def predict_errors(pred,true,origin_rows):
+    pp=pred.reshape(-1,72,2); yy=true.reshape(-1,72,2); olat=np.repeat(origin_rows.origin_latitude.to_numpy(),72); olon=np.repeat(origin_rows.origin_longitude.to_numpy(),72)
+    plat,plon=local_km_to_latlon(olat,olon,pp[:,:,0].ravel(),pp[:,:,1].ravel()); tlat,tlon=local_km_to_latlon(olat,olon,yy[:,:,0].ravel(),yy[:,:,1].ravel())
+    return haversine_km(plat,plon,tlat,tlon).reshape(-1,72)
+
+def four_metrics(errors):
+    e72=errors[:,-1]; q=np.quantile(e72,.9); ite=np.trapezoid(np.column_stack([np.zeros(len(errors)),errors]),x=np.arange(73),axis=1)
+    return {'rmse_72h_km':float(np.sqrt(np.mean(e72**2))),'median_72h_km':float(np.median(e72)),'median_ite_km_h':float(np.median(ite)),'worst10_rmse_72h_km':float(np.sqrt(np.mean(e72[e72>=q]**2)))}
+
+def fit_predict_residual(tr,va,baseline_name,n_components,config):
+    residual=Y-BASELINES[baseline_name]; pca=PCA(n_components=n_components,svd_solver='randomized',random_state=SEED).fit(residual[tr]); z=pca.transform(residual[tr])
+    est=HistGradientBoostingRegressor(loss='squared_error',learning_rate=config['learning_rate'],max_iter=config['max_iter'],max_leaf_nodes=config['max_leaf_nodes'],min_samples_leaf=config['min_samples_leaf'],l2_regularization=config['l2_regularization'],early_stopping=False,random_state=SEED)
+    model=MultiOutputRegressor(est,n_jobs=-1).fit(X_aug[tr],z); pred=BASELINES[baseline_name][va]+pca.inverse_transform(model.predict(X_aug[va]))
+    return pred,model,pca
+
+BASELINE_NAMES=list(BASELINES)
+PCA_COMPONENTS=[4] if FAST_MODE else [8,12]
+BASE_CONFIG={'name':'reference','learning_rate':.05,'max_iter':100 if FAST_MODE else 120,'max_leaf_nodes':31,'min_samples_leaf':20,'l2_regularization':1.0}
+
+
+# ## Analysis stage 5
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+stage1 =[];started =time .time ()
+for baseline in BASELINE_NAMES :
+    for nc in PCA_COMPONENTS :
+        print (baseline ,'PCA',nc )
+        for fold ,valid_ids in enumerate (fold_drifters ,1 ):
+            mask =origins .loc [train_idx ,'ID'].isin (valid_ids ).to_numpy ();va =train_idx [mask ];tr =train_idx [~mask ]
+            pred ,_ ,_ =fit_predict_residual (tr ,va ,baseline ,nc ,BASE_CONFIG );m =four_metrics (predict_errors (pred ,Y [va ],origins .loc [va ]));stage1 .append ({'baseline':baseline ,'n_components':nc ,'fold':fold ,**m })
+stage1_folds =pd .DataFrame (stage1 );metrics =['rmse_72h_km','median_72h_km','median_ite_km_h','worst10_rmse_72h_km']
+stage1_summary =stage1_folds .groupby (['baseline','n_components'])[metrics ].mean ().reset_index ()
+for metric in metrics :stage1_summary [f'rank_{metric }']=stage1_summary [metric ].rank (method ='min')
+stage1_summary ['balanced_rank']=stage1_summary [[f'rank_{x }'for x in metrics ]].mean (axis =1 )
+best_stage1 =stage1_summary .sort_values (['balanced_rank','rmse_72h_km']).iloc [0 ]
+display (stage1_summary .sort_values (['balanced_rank','rmse_72h_km']).round (3 ));print ('Stage1\u9009\u62e9：',best_stage1 .baseline ,int (best_stage1 .n_components ),'elapsed',round (time .time ()-started ,1 ),'s')
+
+
+# ## Analysis stage 6
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+BOOST_CONFIGS =[
+{'name':'small_regularised','learning_rate':.05 ,'max_iter':140 ,'max_leaf_nodes':15 ,'min_samples_leaf':25 ,'l2_regularization':2.0 },
+{'name':'medium','learning_rate':.05 ,'max_iter':160 ,'max_leaf_nodes':31 ,'min_samples_leaf':20 ,'l2_regularization':1.0 },
+{'name':'faster','learning_rate':.10 ,'max_iter':100 ,'max_leaf_nodes':31 ,'min_samples_leaf':20 ,'l2_regularization':.5 },
+{'name':'large_regularised','learning_rate':.04 ,'max_iter':180 ,'max_leaf_nodes':63 ,'min_samples_leaf':25 ,'l2_regularization':2.0 },
+]
+if FAST_MODE :BOOST_CONFIGS =BOOST_CONFIGS [:1 ]
+stage2 =[];baseline =str (best_stage1 .baseline );nc =int (best_stage1 .n_components )
+for config in BOOST_CONFIGS :
+    print (config ['name'])
+    for fold ,valid_ids in enumerate (fold_drifters ,1 ):
+        mask =origins .loc [train_idx ,'ID'].isin (valid_ids ).to_numpy ();va =train_idx [mask ];tr =train_idx [~mask ]
+        pred ,_ ,_ =fit_predict_residual (tr ,va ,baseline ,nc ,config );m =four_metrics (predict_errors (pred ,Y [va ],origins .loc [va ]));stage2 .append ({'config':config ['name'],'fold':fold ,**m });print (' fold',fold ,m ['rmse_72h_km'])
+stage2_folds =pd .DataFrame (stage2 );stage2_summary =stage2_folds .groupby ('config')[metrics ].mean ().reset_index ()
+for metric in metrics :stage2_summary [f'rank_{metric }']=stage2_summary [metric ].rank (method ='min')
+stage2_summary ['balanced_rank']=stage2_summary [[f'rank_{x }'for x in metrics ]].mean (axis =1 )
+winner =stage2_summary .sort_values (['balanced_rank','rmse_72h_km']).iloc [0 ];best_config =next (x for x in BOOST_CONFIGS if x ['name']==winner .config )
+display (stage2_summary .sort_values (['balanced_rank','rmse_72h_km']).round (3 ));print ('\u6700\u7ec8\u914d\u7f6e：',best_config ,'baseline',baseline ,'PCA',nc )
+
+
+# In[ ]:
+
+
+fig,axes=plt.subplots(1,2,figsize=(12,4.5))
+s=stage2_summary.sort_values('rmse_72h_km'); axes[0].barh(s.config,s.rmse_72h_km,color='#4c9bd3'); axes[0].invert_yaxis(); axes[0].set_title('Grouped-CV 72-h RMSE'); axes[0].set_xlabel('km')
+s=stage2_summary.sort_values('median_ite_km_h'); axes[1].barh(s.config,s.median_ite_km_h,color='#1b9e77'); axes[1].invert_yaxis(); axes[1].set_title('Grouped-CV median ITE'); axes[1].set_xlabel('km·h')
+plt.tight_layout(); fig.savefig(OUTPUT/'boosting_residual_cv_leaderboard.png',dpi=180,bbox_inches='tight'); plt.show()
+
+
+# ## Analysis stage 7
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+test_pred,final_model,final_pca=fit_predict_residual(train_idx,test_idx,baseline,nc,best_config)
+test_errors=predict_errors(test_pred,Y[test_idx],origins.loc[test_idx]); test_metrics=four_metrics(test_errors)
+lead_metrics=pd.DataFrame({'lead_time_hours':np.arange(1,73),'median_error_km':np.median(test_errors,axis=0),'rmse_km':np.sqrt(np.mean(test_errors**2,axis=0))})
+test_ite=np.trapezoid(np.column_stack([np.zeros(len(test_errors)),test_errors]),x=np.arange(73),axis=1)
+case_metrics=pd.DataFrame({'forecast_case_id':origins.loc[test_idx,'forecast_case_id'].to_numpy(),'drifter_id':origins.loc[test_idx,'ID'].to_numpy(),'error_72h_km':test_errors[:,-1],'ite_km_h':test_ite})
+display(pd.DataFrame([test_metrics]).round(3)); display(lead_metrics[lead_metrics.lead_time_hours.isin([24,48,72])].round(3))
+
+
+# ## Analysis stage 8
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+def model_metrics(case_file,label):
+    d=pd.read_csv(OUTPUT/case_file); ec='error_72h_km' if 'error_72h_km' in d else 'final_72h_error_km'; ic='ite_km_h' if 'ite_km_h' in d else 'integrated_trajectory_error_km_h'; e=d[ec].to_numpy(); q=np.quantile(e,.9)
+    return {'model':label,'rmse_72h_km':np.sqrt(np.mean(e**2)),'median_72h_km':np.median(e),'median_ite_km_h':np.median(d[ic]),'worst10_rmse_72h_km':np.sqrt(np.mean(e[e>=q]**2))}
+comparison=[{'model':'Boosting residual',**test_metrics}]
+for fn,label in [('optimised_fnn_test_case_metrics.csv','Optimised FNN'),('optimised_knn_test_case_metrics.csv','Optimised KNN'),('optimised_random_forest_test_case_metrics.csv','Optimised Random Forest')]:
+    if (OUTPUT/fn).exists(): comparison.append(model_metrics(fn,label))
+comparison=pd.DataFrame(comparison).sort_values('rmse_72h_km'); display(comparison.round(3))
+
+def paired_bootstrap(ref_file,label):
+    ref=pd.read_csv(OUTPUT/ref_file); col='error_72h_km' if 'error_72h_km' in ref else 'final_72h_error_km'; ref=ref[['forecast_case_id',col]].rename(columns={col:'ref_error'}); m=case_metrics.merge(ref,on='forecast_case_id'); groups={k:g for k,g in m.groupby('drifter_id')}; ids=np.array(list(groups)); rng=np.random.default_rng(2026); diffs=[]
+    for _ in range(300 if FAST_MODE else 5000):
+        parts=[groups[i] for i in rng.choice(ids,len(ids),replace=True)]; a=np.concatenate([x.error_72h_km for x in parts]); b=np.concatenate([x.ref_error for x in parts]); diffs.append(np.sqrt(np.mean(a*a))-np.sqrt(np.mean(b*b)))
+    point=np.sqrt(np.mean(m.error_72h_km**2))-np.sqrt(np.mean(m.ref_error**2)); lo,hi=np.quantile(diffs,[.025,.975]); return {'contrast':f'Boosting residual - {label} RMSE','point_difference_km':point,'ci_2.5_km':lo,'ci_97.5_km':hi}
+boot=pd.DataFrame([paired_bootstrap('optimised_fnn_test_case_metrics.csv','Optimised FNN'),paired_bootstrap('optimised_knn_test_case_metrics.csv','Optimised KNN')]); display(boot.round(3))
+
+fig,axes=plt.subplots(1,3,figsize=(15,4.8))
+for ax,metric,title in zip(axes,['median_72h_km','rmse_72h_km','median_ite_km_h'],['72-h median','72-h RMSE','Median ITE']):
+    q=comparison.sort_values(metric,ascending=False); ax.barh(q.model,q[metric],color=['#d81b60' if x=='Boosting residual' else '#aaaaaa' for x in q.model]); ax.set_title(title); ax.set_xlabel('km' if metric!='median_ite_km_h' else 'km·h')
+plt.tight_layout(); fig.savefig(OUTPUT/'boosting_residual_vs_models.png',dpi=180,bbox_inches='tight'); plt.show()
+
+
+# In[ ]:
+
+
+best_existing =comparison [~comparison .model .eq ('Boosting residual')].sort_values ('rmse_72h_km').iloc [0 ];boost =comparison [comparison .model .eq ('Boosting residual')].iloc [0 ]
+display (Markdown (f"""### \u672c\u6b21\u5b9e\u9a8c\u7ed3\u8bba
+
+- Boosting residual\u4f7f\u7528 `{baseline }` baseline、{nc }\u4e2a\u6b8b\u5deePCA\u6210\u5206\u548c `{best_config ['name']}` \u914d\u7f6e。
+- Test 72 h median = **{boost .median_72h_km :.2f} km**，RMSE = **{boost .rmse_72h_km :.2f} km**，median ITE = **{boost .median_ite_km_h :.1f} km·h**。
+- \u5f53\u524d\u6700\u4f4eRMSE\u7684\u73b0\u6709\u6a21\u578b\u662f **{best_existing .model } ({best_existing .rmse_72h_km :.2f} km)**。
+- \u662f\u5426\u771f\u7684\u4f18\u4e8e\u73b0\u6709\u6a21\u578b\u5e94\u4f9d\u636e\u4e0a\u65b9drifter-level bootstrap，\u800c\u4e0d\u662f\u53ea\u770b\u5355\u4e2a\u70b9\u4f30\u8ba1。
+"""))
+
+
+# ## Analysis stage 9
+# 
+# This stage documents the next part of the analysis. The following code and retained outputs provide the exact computational record.
+
+# In[ ]:
+
+
+diag .to_csv (OUTPUT /'extreme_case_diagnostics.csv',index =False );regime_enrichment .to_csv (OUTPUT /'extreme_case_regime_enrichment.csv',index =False );drogue_enrichment .to_csv (OUTPUT /'extreme_case_drogue_enrichment.csv',index =False );continuous_summary .to_csv (OUTPUT /'extreme_case_continuous_summary.csv',index =False )
+stage1_folds .to_csv (OUTPUT /'boosting_residual_stage1_folds.csv',index =False );stage1_summary .to_csv (OUTPUT /'boosting_residual_stage1_summary.csv',index =False );stage2_folds .to_csv (OUTPUT /'boosting_residual_stage2_folds.csv',index =False );stage2_summary .to_csv (OUTPUT /'boosting_residual_cv_leaderboard.csv',index =False )
+lead_metrics .to_csv (OUTPUT /'boosting_residual_lead_metrics.csv',index =False );case_metrics .to_csv (OUTPUT /'boosting_residual_test_case_metrics.csv',index =False );comparison .to_csv (OUTPUT /'boosting_residual_model_comparison.csv',index =False );boot .to_csv (OUTPUT /'boosting_residual_bootstrap.csv',index =False )
+with open (OUTPUT /'boosting_residual_best_parameters.json','w')as f :json .dump ({'baseline':baseline ,'pca_components':nc ,**best_config ,'selection':'balanced rank of CV RMSE, median, ITE and worst-10% RMSE'},f ,indent =2 )
+print ('\u4fdd\u5b58\u5230：',OUTPUT )
+

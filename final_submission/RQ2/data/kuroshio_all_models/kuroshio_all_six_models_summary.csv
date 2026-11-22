@@ -1,0 +1,7 @@
+model,global_rmse_72h_km,kuroshio_trained_rmse_72h_km,rmse_improvement_pct,global_median_72h_error_km,kuroshio_trained_median_72h_error_km,regional_refit,note
+FNN,87.47568231554861,82.52567803307625,5.6587204025643985,64.08285719372424,62.02727558750154,yes,Retrained using Kuroshio-Core training cases only
+Ridge,92.0776495476334,86.25753882276726,6.320872387012111,66.65608165272174,66.04582559983724,yes,Retrained using Kuroshio-Core training cases only
+KNN,92.65590614988756,90.25772583923391,2.588264915108762,67.44223528523374,67.34953531481072,yes,Retrained using Kuroshio-Core training cases only
+VAR(1),111.46616031787526,94.33562604014988,15.36837209505839,91.37816082685416,78.03675171268596,yes,Retrained using Kuroshio-Core training cases only
+Persistence,120.36068169056976,,,83.3185063021256,,no,No trainable parameters; unchanged physical baseline
+Mean Flow,105.32574845891382,,,77.10107002979034,,no,Poster mean-flow baseline fitted globally; not relabelled as regional

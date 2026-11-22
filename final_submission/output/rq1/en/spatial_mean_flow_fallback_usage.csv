@@ -1,0 +1,4 @@
+Flow source,Prediction steps,Share of test prediction steps
+fine_0.25deg,53024,0.9728460296492001
+coarse_1deg,1110,0.020365477763099955
+regional_mean,370,0.006788492587699985

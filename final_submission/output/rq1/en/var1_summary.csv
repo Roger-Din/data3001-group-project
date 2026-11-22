@@ -1,0 +1,11 @@
+Metric,Value
+Training drifters,364.0
+Training transitions,391204.0
+Calibration cases (unused),769.0
+Test cases,757.0
+Spectral radius,0.9609379430976132
+24h median error (km),16.004511120514007
+48h median error (km),36.26563016197131
+72h median error (km),55.89177215052097
+72h RMSE (km),77.88567463206961
+Median ITE (km·h),1894.7753651940598

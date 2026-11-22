@@ -1,0 +1,13 @@
+{
+  "entry_point": "run_reproduction.py",
+  "verification_command": "python run_reproduction.py --mode verify",
+  "full_preview_command": "python run_reproduction.py --mode full --stage all --dry-run",
+  "stages": [
+    {"name": "data", "purpose": "validate frozen processed inputs and leakage-safe split"},
+    {"name": "rq1", "purpose": "fit physical baselines and candidate point-forecast models"},
+    {"name": "rq2", "purpose": "assign ocean regimes and evaluate frozen RQ1 predictions regionally"},
+    {"name": "rq3", "purpose": "calibrate and validate global and Mondrian conformal regions"}
+  ],
+  "canonical_rq3_output": "RQ3/optimised_fnn/output",
+  "headline_result_sources": "RESULTS_MANIFEST.csv"
+}

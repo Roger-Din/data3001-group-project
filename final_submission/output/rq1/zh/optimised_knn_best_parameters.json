@@ -1,0 +1,11 @@
+{
+  "representation": {
+    "name": "spatial_boost|PCA=none",
+    "scheme": "spatial_boost",
+    "pca_dim": null
+  },
+  "k": 24,
+  "power": 3.0,
+  "target_mode": "direct",
+  "selection_metric": "grouped 5-fold CV 72h Haversine RMSE"
+}

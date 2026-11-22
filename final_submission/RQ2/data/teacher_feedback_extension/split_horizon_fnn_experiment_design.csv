@@ -1,0 +1,4 @@
+candidate_T_star_h,short_target,long_target,selection_data,test_usage
+24,1-23 h,24-72 h,training-only grouped 5-fold CV,"once, after all choices are frozen"
+36,1-35 h,36-72 h,training-only grouped 5-fold CV,"once, after all choices are frozen"
+48,1-47 h,48-72 h,training-only grouped 5-fold CV,"once, after all choices are frozen"

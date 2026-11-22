@@ -1,0 +1,80 @@
+{
+  "configuration": {
+    "name": "128-64 direct L2",
+    "hidden_sizes": [
+      128,
+      64
+    ],
+    "l2": 0.001,
+    "learning_rate": 0.001,
+    "batch_size": 256,
+    "target_mode": "direct",
+    "epochs": 129
+  },
+  "seeds": [
+    4000,
+    2026,
+    2037,
+    2048
+  ],
+  "summary": [
+    {
+      "model": "Seed 4000",
+      "median_72h_km": 41.7155348543114,
+      "mean_72h_km": 50.122818536940144,
+      "rmse_72h_km": 62.14982255103455,
+      "median_ite_km_h": 1423.7320783128032,
+      "n_error_gt_100km": 77,
+      "n_error_gt_150km": 19
+    },
+    {
+      "model": "Seed 2026",
+      "median_72h_km": 41.13668938061808,
+      "mean_72h_km": 49.74482173846016,
+      "rmse_72h_km": 61.85652025313065,
+      "median_ite_km_h": 1406.5393313683362,
+      "n_error_gt_100km": 69,
+      "n_error_gt_150km": 19
+    },
+    {
+      "model": "Seed 2037",
+      "median_72h_km": 40.50929039368334,
+      "mean_72h_km": 49.579465287706256,
+      "rmse_72h_km": 61.80905894069355,
+      "median_ite_km_h": 1424.8156640030134,
+      "n_error_gt_100km": 70,
+      "n_error_gt_150km": 16
+    },
+    {
+      "model": "Seed 2048",
+      "median_72h_km": 41.364560240884906,
+      "mean_72h_km": 49.82988449912951,
+      "rmse_72h_km": 62.054874419046186,
+      "median_ite_km_h": 1429.376013097704,
+      "n_error_gt_100km": 73,
+      "n_error_gt_150km": 13
+    },
+    {
+      "model": "Ensemble 2026+2037+2048",
+      "median_72h_km": 41.34199299960503,
+      "mean_72h_km": 49.50919821477486,
+      "rmse_72h_km": 61.693756924957505,
+      "median_ite_km_h": 1403.1588158019367,
+      "n_error_gt_100km": 70,
+      "n_error_gt_150km": 16
+    },
+    {
+      "model": "Ensemble all four seeds",
+      "median_72h_km": 41.909350196897385,
+      "mean_72h_km": 49.55544151991342,
+      "rmse_72h_km": 61.67799539378611,
+      "median_ite_km_h": 1406.2491913064268,
+      "n_error_gt_100km": 70,
+      "n_error_gt_150km": 15
+    }
+  ],
+  "seed_effect_km": 0.24300468007776033,
+  "ensemble_effect_km": 0.21306094599928826,
+  "ensemble_vs_best_new_single_km": 0.1153020157360487,
+  "verdict": "ensemble优于三个新单模型的平均表现，并且不差于其中最佳单模型；改善主要得到集成平均的直接支持。"
+}

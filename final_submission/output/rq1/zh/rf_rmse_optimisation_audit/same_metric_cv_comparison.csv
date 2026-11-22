@@ -1,0 +1,3 @@
+model,mean_grouped_cv_displacement_rmse_km,sd_across_folds_km
+Original RF fixed configuration,26.77694791160249,1.4716444707678284
+RMSE-optimised RF selected configuration,26.86148815114255,1.4875368128027713

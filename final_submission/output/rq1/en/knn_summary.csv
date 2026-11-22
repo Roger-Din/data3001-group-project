@@ -1,0 +1,12 @@
+Metric,Value
+Selected K,20.0
+Selected distance power,2.0
+Training cases,3591.0
+Calibration cases (unused),769.0
+Test cases,757.0
+Median effective neighbours,19.271481262908555
+24h median error (km),12.033615571266312
+48h median error (km),27.00006287123675
+72h median error (km),41.98753278254327
+72h RMSE (km),65.21194585008186
+Median ITE (km·h),1462.9333274585874

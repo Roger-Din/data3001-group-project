@@ -19,6 +19,10 @@ __pycache__/
 *.nc4
 *.zarr/
 
+# The final submission is a self-contained reproducibility bundle.
+!final_submission/**/*.nc
+!final_submission/**/*.nc4
+
 # R session history
 .Rhistory
 

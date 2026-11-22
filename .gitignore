@@ -43,3 +43,5 @@ references/papers/*.pdf
 
 # Reproducible but large external-region download/cache
 /development_work/data/external/spatial_generalization_cache/
+# Local, unfinished report working files
+/01_report/draft_working_files/

@@ -7,7 +7,7 @@ reproducibility package.
 
 ## Start here: instructor review in five steps
 
-All commands below must be run from the `final_submission` directory.
+All commands below must be run from the `02_reproducibility` directory.
 
 ### Step 1 — Create the Python environment
 
@@ -120,7 +120,7 @@ the submission if the original frozen files must remain byte-for-byte unchanged.
 | RQ1 | `data/processed/` | `output/rq1/` |
 | RQ2 | `output/rq1/`, `RQ2/data/` | `RQ2/results/` |
 | RQ3 | frozen FNN predictions and calibration cases | `RQ3/optimised_fnn/output/` |
-| Report evidence | frozen RQ outputs | `figures/report/` and `00_shared/00_report_figures.ipynb` |
+| Report evidence | frozen RQ outputs | `../01_report/figures/` and `00_shared/00_report_figures.ipynb` |
 
 ## Expected headline results
 
@@ -153,7 +153,7 @@ rounded. The validator uses the unrounded source files and documented tolerances
 | `RQ3/optimised_fnn/output/` | Canonical final RQ3 outputs |
 | `data/processed/` | Frozen leakage-safe processed inputs used across the RQs |
 | `output/rq1/` | RQ1 predictions, metrics, CV summaries and diagnostics |
-| `figures/report/` | Report-ready figures |
+| `../01_report/figures/` | Report-ready figures grouped by RQ |
 | `RESULTS_MANIFEST.csv` | Headline claims and their machine-readable sources |
 | `MANIFEST_SHA256.txt` | Integrity checksums for the submitted files |
 | `validation_summary.json` | Frozen summary of the most recent validation run |
@@ -187,7 +187,7 @@ labelled exploratory in the trial log.
 ## Troubleshooting
 
 **`FileNotFoundError` for `data/processed`:** run the command from the
-`final_submission` directory, not from inside an RQ subfolder.
+`02_reproducibility` directory, not from inside an RQ subfolder.
 
 **`jupyter: command not found`:** reactivate `.venv` and rerun
 `python -m pip install -r requirements.txt`.

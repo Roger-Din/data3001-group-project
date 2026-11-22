@@ -1,0 +1,8 @@
+strategy,regime,selected_alpha,n_training_cases,n_training_drifters
+Global original,All,100.0,3591,311
+Current-conditioned,All,100.0,3591,311
+Current-residual,All,100.0,3591,311
+Regional,Shelf,100.0,525,132
+Regional,Kuroshio Core,10.0,646,208
+Regional,Transition,100.0,816,216
+Regional,Other Offshore,100.0,1599,167

@@ -1,0 +1,16 @@
+research_question,claim,reported_value,source_file,reproduction
+Data,Hourly observations,"562,944",data/processed/region_A_observations.parquet,Count rows
+Data,Forecast cases,"5,117",data/processed/forecast_origins.parquet,Count rows
+Data,Training/calibration/test cases,"3,591 / 769 / 757",data/processed/forecast_origins.parquet,Group by partition
+RQ1,FNN 72-hour RMSE,61.69 km,output/rq1/zh/optimised_fnn_test_case_metrics.csv,Square root of mean squared error_72h_km
+RQ1,FNN median 72-hour error,41.34 km,output/rq1/zh/optimised_fnn_test_case_metrics.csv,Median error_72h_km
+RQ1,FNN median ITE,"1,403.16 km h",output/rq1/zh/optimised_fnn_test_case_metrics.csv,Median ite_km_h
+RQ1,Original Random Forest 72-hour RMSE,62.13 km,output/rq1/zh/random_forest_test_case_metrics.csv,Square root of mean squared final_72h_error_km
+RQ2,FNN Shelf 72-hour RMSE,40.83 km,"output/rq1/zh/optimised_fnn_test_case_metrics.csv + RQ2/data/forecast_case_regimes.csv",Merge on forecast_case_id and group by regime
+RQ2,FNN Kuroshio Core 72-hour RMSE,85.86 km,"output/rq1/zh/optimised_fnn_test_case_metrics.csv + RQ2/data/forecast_case_regimes.csv",Merge on forecast_case_id and group by regime
+RQ2,Core-trained optimised FNN 72-hour RMSE,82.12 km,RQ2/results/optimised_fnn_analysis/core_retraining_comparison.csv,Read regional_km from RMSE row
+RQ2,Core-only optimised FNN RMSE improvement,4.35%,RQ2/results/optimised_fnn_analysis/regional_retraining_five_models_summary.csv,Filter FNN and read reduction_pct
+RQ3,Global 90% 72-hour coverage,91.02%,RQ3/optimised_fnn/output/optimised_fnn_conformal_overall.csv,Read coverage_72h
+RQ3,Global 90% 72-hour radius,101.87 km,RQ3/optimised_fnn/output/optimised_fnn_conformal_overall.csv,Read radius_72h_km
+RQ3,Kuroshio global 72-hour coverage,80.58%,RQ3/optimised_fnn/output/optimised_fnn_conformal_regime_summary.csv,Filter Global and Kuroshio Core
+RQ3,Kuroshio Mondrian 72-hour coverage,89.93%,RQ3/optimised_fnn/output/optimised_fnn_conformal_regime_summary.csv,Filter Mondrian and Kuroshio Core

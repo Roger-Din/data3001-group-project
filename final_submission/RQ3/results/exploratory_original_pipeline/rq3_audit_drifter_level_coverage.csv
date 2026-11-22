@@ -1,0 +1,13 @@
+regime,method,n_test_drifters,n_test_cases,radius_km,all_cases_covered_drifters,drifter_level_all_case_coverage,interpretation
+Kuroshio Core,Global case CP,45,139,105.19603665734878,22,0.4888888888888889,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Kuroshio Core,Mondrian case CP,45,139,141.2269267717129,32,0.7111111111111111,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Kuroshio Core,Regime drifter-max CP,45,139,195.97274105317067,43,0.9555555555555556,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Other Offshore,Global case CP,41,341,105.19603665734878,30,0.7317073170731707,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Other Offshore,Mondrian case CP,41,341,93.33113074905685,24,0.5853658536585366,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Other Offshore,Regime drifter-max CP,41,341,132.31468148525363,39,0.9512195121951219,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Shelf,Global case CP,28,112,105.19603665734878,24,0.8571428571428571,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Shelf,Mondrian case CP,28,112,62.86935124494065,20,0.7142857142857143,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Shelf,Regime drifter-max CP,28,112,99.4251322222482,23,0.8214285714285714,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Transition,Global case CP,43,165,105.19603665734878,29,0.6744186046511628,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Transition,Mondrian case CP,43,165,117.17748552819457,31,0.7209302325581395,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."
+Transition,Regime drifter-max CP,43,165,150.88042836963052,38,0.8837209302325582,"All observed 72h endpoint cases for a test drifter within this regime are covered; descriptive, not a formal guarantee."

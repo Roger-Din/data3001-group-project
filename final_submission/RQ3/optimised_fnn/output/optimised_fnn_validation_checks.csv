@@ -1,0 +1,22 @@
+check,status,detail
+Unique origin case IDs,PASS,
+Unique regime case IDs,PASS,
+All cases have regime records,PASS,
+Expected partition sizes,PASS,3591/769/757
+Drifter-disjoint partitions,PASS,
+Known evaluation regimes,PASS,
+Cache configuration hash matches JSON,PASS,
+Calibration case IDs and order match,PASS,
+Test case IDs and order match,PASS,
+Finite predictions and expected dimensions,PASS,
+All 72h targets available,PASS,
+All 72h targets available,PASS,
+Finite nonnegative endpoint errors,PASS,
+Saved regime coverage reproduced,PASS,max difference=1.11e-16
+Saved regime radii reproduced,PASS,max difference=2.26e-12 km
+RQ1 per-case consistency,NOT_VERIFIED,Independent reference not available: /Users/qiuyurui/Desktop/Data3001/output/rq1/zh/optimised_fnn_test_case_metrics.csv
+No explicit future/target columns in regime file,PASS,none
+Regime metadata origin consistency: origin_latitude,PASS,
+Regime metadata origin consistency: origin_longitude,PASS,
+Regime metadata origin consistency: ID,PASS,
+Regime generation uses prediction-time information only,NOT_VERIFIED,Requires independent review of upstream RQ2 regime-generation script and its input timestamps; output CSV alone cannot prove provenance.

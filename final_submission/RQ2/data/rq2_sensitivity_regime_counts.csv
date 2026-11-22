@@ -1,0 +1,37 @@
+speed_threshold_m_s,buffer_km,regime,n_cases,n_drifters
+0.4,25,Shelf,108,28
+0.4,25,Kuroshio Core,177,48
+0.4,25,Transition,116,36
+0.4,25,Other Offshore,356,42
+0.4,50,Shelf,108,28
+0.4,50,Kuroshio Core,177,48
+0.4,50,Transition,147,39
+0.4,50,Other Offshore,325,40
+0.4,75,Shelf,108,28
+0.4,75,Kuroshio Core,177,48
+0.4,75,Transition,170,43
+0.4,75,Other Offshore,302,36
+0.5,25,Shelf,112,28
+0.5,25,Kuroshio Core,139,45
+0.5,25,Transition,123,38
+0.5,25,Other Offshore,383,44
+0.5,50,Shelf,112,28
+0.5,50,Kuroshio Core,139,45
+0.5,50,Transition,165,43
+0.5,50,Other Offshore,341,41
+0.5,75,Shelf,112,28
+0.5,75,Kuroshio Core,139,45
+0.5,75,Transition,183,45
+0.5,75,Other Offshore,323,37
+0.6,25,Shelf,115,29
+0.6,25,Kuroshio Core,104,39
+0.6,25,Transition,124,37
+0.6,25,Other Offshore,414,48
+0.6,50,Shelf,115,29
+0.6,50,Kuroshio Core,104,39
+0.6,50,Transition,171,44
+0.6,50,Other Offshore,367,43
+0.6,75,Shelf,115,29
+0.6,75,Kuroshio Core,104,39
+0.6,75,Transition,203,47
+0.6,75,Other Offshore,335,37

@@ -1,0 +1,130 @@
+{
+  "overall_status": "PASS",
+  "checks": [
+    {
+      "check": "Required files",
+      "status": "PASS",
+      "detail": "all present"
+    },
+    {
+      "check": "Canonical notebook JSON",
+      "status": "PASS",
+      "detail": "44 valid notebooks"
+    },
+    {
+      "check": "English-facing notebook sources",
+      "status": "PASS",
+      "detail": "no visible Chinese source text"
+    },
+    {
+      "check": "RQ1 notebook/script correspondence",
+      "status": "PASS",
+      "detail": "20 scripts match 20 notebooks"
+    },
+    {
+      "check": "RQ1 Python script syntax",
+      "status": "PASS",
+      "detail": "all scripts parse successfully"
+    },
+    {
+      "check": "Observation count",
+      "status": "PASS",
+      "detail": "562,944"
+    },
+    {
+      "check": "Forecast-case count",
+      "status": "PASS",
+      "detail": "5,117"
+    },
+    {
+      "check": "Partition case counts",
+      "status": "PASS",
+      "detail": "{'training': 3591, 'calibration': 769, 'test': 757}"
+    },
+    {
+      "check": "Drifter-level leakage",
+      "status": "PASS",
+      "detail": "no ID appears in multiple partitions"
+    },
+    {
+      "check": "RQ1 FNN 72 h RMSE",
+      "status": "PASS",
+      "detail": "61.6938 km"
+    },
+    {
+      "check": "RQ1 FNN median error",
+      "status": "PASS",
+      "detail": "41.3420 km"
+    },
+    {
+      "check": "RQ1 FNN median ITE",
+      "status": "PASS",
+      "detail": "1403.1588 km h"
+    },
+    {
+      "check": "RQ1 original RF 72 h RMSE",
+      "status": "PASS",
+      "detail": "62.1324 km"
+    },
+    {
+      "check": "RQ2 Shelf FNN RMSE",
+      "status": "PASS",
+      "detail": "40.825849 km"
+    },
+    {
+      "check": "RQ2 Core FNN RMSE",
+      "status": "PASS",
+      "detail": "85.861726 km"
+    },
+    {
+      "check": "RQ2 Core-trained optimised FNN RMSE",
+      "status": "PASS",
+      "detail": "82.124151 km"
+    },
+    {
+      "check": "RQ2 Core-retraining clustered interval",
+      "status": "PASS",
+      "detail": "[0.5969, 6.8504] km"
+    },
+    {
+      "check": "RQ2 Core FNN improvement",
+      "status": "PASS",
+      "detail": "4.353016%"
+    },
+    {
+      "check": "RQ2 Core retraining independently reproduced",
+      "status": "PASS",
+      "detail": "recomputed 82.124151 km"
+    },
+    {
+      "check": "RQ3 global coverage",
+      "status": "PASS",
+      "detail": "0.910172"
+    },
+    {
+      "check": "RQ3 global radius",
+      "status": "PASS",
+      "detail": "101.873824 km"
+    },
+    {
+      "check": "RQ3 Core global coverage",
+      "status": "PASS",
+      "detail": "0.805755"
+    },
+    {
+      "check": "RQ3 Core Mondrian coverage",
+      "status": "PASS",
+      "detail": "0.899281"
+    },
+    {
+      "check": "RQ3 validation audit",
+      "status": "PASS",
+      "detail": "{'PASS': 19, 'NOT_VERIFIED': 2}"
+    },
+    {
+      "check": "SHA256 manifest",
+      "status": "PASS",
+      "detail": "all listed files match"
+    }
+  ]
+}

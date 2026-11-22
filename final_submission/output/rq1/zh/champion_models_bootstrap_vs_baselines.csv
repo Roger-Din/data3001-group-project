@@ -1,0 +1,9 @@
+model,baseline,rmse_difference_km,ci_2.5_km,ci_97.5_km,improvement_supported
+Boosting residual,Velocity persistence,-29.33370540220244,-34.06691677866841,-24.661187837229825,True
+Boosting residual,Spatial mean flow,-20.21115210178405,-24.72922946852603,-15.418737424196111,True
+Optimised FNN,Velocity persistence,-28.407052200162504,-33.10543485514601,-23.679872353013273,True
+Optimised FNN,Spatial mean flow,-19.284498899744115,-23.922874600389083,-14.156608473575398,True
+Optimised KNN,Velocity persistence,-26.393084419118217,-31.265145874843505,-21.535800392420132,True
+Optimised KNN,Spatial mean flow,-17.27053111869983,-21.83134576835254,-12.11480699991747,True
+Optimised Random Forest,Velocity persistence,-27.927942538638916,-32.6094281478389,-23.250656827658766,True
+Optimised Random Forest,Spatial mean flow,-18.805389238220528,-23.4843047069942,-13.618883228996348,True

@@ -1,0 +1,8 @@
+.venv/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.DS_Store
+validation/latest_validation.json
+RQ2/results/recomputed/
+RQ3/results/recomputed/

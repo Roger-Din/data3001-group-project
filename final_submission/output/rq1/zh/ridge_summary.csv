@@ -1,0 +1,10 @@
+指标,结果
+Selected alpha,100.0
+Training cases,3591.0
+Calibration cases (unused),769.0
+Test cases,757.0
+24h median error (km),12.3200525799772
+48h median error (km),28.27108665042035
+72h median error (km),44.752281128929994
+72h RMSE (km),65.91289473870849
+Median ITE (km·h),1531.7880673460377

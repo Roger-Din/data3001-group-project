@@ -1,0 +1,18 @@
+{
+  "name": "128-64 direct L2",
+  "hidden_sizes": [
+    128,
+    64
+  ],
+  "l2": 0.001,
+  "learning_rate": 0.001,
+  "batch_size": 256,
+  "target_mode": "direct",
+  "selected_epochs": 129,
+  "ensemble_seeds": [
+    2026,
+    2037,
+    2048
+  ],
+  "selection_metric": "grouped 5-fold CV 72h Haversine RMSE"
+}

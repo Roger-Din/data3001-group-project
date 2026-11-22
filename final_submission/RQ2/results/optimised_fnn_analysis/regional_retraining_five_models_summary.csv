@@ -1,0 +1,6 @@
+model,version,global_rmse_km,regional_rmse_km,reduction_pct,n_core_cases,n_core_drifters,global_source,status
+KNN,Optimised Weighted KNN,89.56568593768795,88.4480873381992,1.247797733907015,139,45,output/rq1/zh/optimised_knn_test_case_metrics.csv,Complete
+FNN,Optimised FNN,85.86172629656758,82.12415134391097,4.353016313400199,139,45,output/rq1/zh/optimised_fnn_test_case_metrics.csv,Complete
+Random Forest,Original Random Forest,86.52538923999015,83.36107172573362,3.6570971157146155,139,45,output/rq1/zh/random_forest_test_case_metrics.csv,Complete
+Ridge,Multi-output Ridge,92.0776495476334,86.51359490908227,6.042785264270612,139,45,output/rq1/zh/ridge_test_case_metrics.csv,Complete
+VAR,Pooled VAR(1),111.46616031787526,94.33562604014968,15.368372095058566,139,45,output/rq1/zh/var1_test_case_metrics.csv,Complete

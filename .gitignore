@@ -27,7 +27,7 @@ __pycache__/
 .Rhistory
 
 # Downloaded regional data
-data/regions/*.csv
+development_work/data/regions/*.csv
 
 # Locally stored research papers
 references/papers/*.pdf
@@ -37,8 +37,9 @@ references/papers/*.pdf
 
 # Large/raw Region A files and generated modelling tables
 /RegionA.csv
-/data/processed/*
-!/data/processed/qc_summary.csv
+/development_work/RegionA.csv
+/development_work/data/processed/*
+!/development_work/data/processed/qc_summary.csv
 
 # Reproducible but large external-region download/cache
-/data/external/spatial_generalization_cache/
+/development_work/data/external/spatial_generalization_cache/

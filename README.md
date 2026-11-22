@@ -1,15 +1,59 @@
 # DATA3001 Surface-Drifter Forecasting Project
 
 This project forecasts 72 hours of surface-drifter motion from the preceding
-24-hour trajectory in the East China Sea and evaluates how forecast accuracy
-and uncertainty vary across ocean regimes.
+24-hour trajectory in the East China Sea. It compares physical and learned point
+forecasts, studies regional predictability, and evaluates conformal uncertainty
+regions.
 
-> **Marker / reviewer: start in [`final_submission/`](final_submission/).**
-> It is the authoritative, English-facing and reproducible submission package.
-> The other root-level folders preserve the team's development history and
-> should not be used in place of the frozen final results.
+## Repository layout
 
-## Quick review
+The repository is deliberately divided into only two main folders:
+
+```text
+data3001-group-project/
+├── README.md
+├── .gitignore
+│
+├── final_submission/          # ★ frozen, reproducible, marker-facing package
+│   ├── README.md              # five-step instructor run guide
+│   ├── run_reproduction.py    # verify or rerun the submitted analyses
+│   ├── requirements.txt
+│   ├── 00_shared/             # report figures and model-development log
+│   ├── RQ1/                   # point forecasting and model selection
+│   ├── RQ2/                   # regional predictability
+│   ├── RQ3/                   # conformal uncertainty analysis
+│   ├── data/processed/        # frozen leakage-safe shared inputs
+│   ├── output/rq1/            # RQ1 predictions and metrics
+│   ├── figures/report/        # report-ready figures
+│   ├── docs/                  # execution and reproducibility documentation
+│   ├── RESULTS_MANIFEST.csv   # final claims mapped to source files
+│   ├── MANIFEST_SHA256.txt    # package integrity checksums
+│   └── validation_summary.json
+│
+└── development_work/          # project process, experiments and historical files
+    ├── README.md              # development archive guide
+    ├── notebooks/             # preliminary, RQ1, RQ2, RQ3 and transfer work
+    ├── RQ2/                   # original RQ2 scripts, data and figures
+    ├── RQ3/                   # original RQ3 scripts and outputs
+    ├── data/                  # compact development data audit
+    ├── output/                # historical generated outputs
+    ├── scripts/preliminary/   # early processing utilities
+    └── project_progress_overview.ipynb
+```
+
+## Which folder should be used?
+
+| User | Start here | Purpose |
+|---|---|---|
+| Marker / instructor | [`final_submission/`](final_submission/) | Review and reproduce the frozen final analysis |
+| Team member reviewing the process | [`development_work/`](development_work/) | Inspect earlier notebooks, experiments and intermediate outputs |
+
+The group report is still being edited and is intentionally not included in the
+repository's final reproducibility package.
+
+## Quick verification for the marker
+
+From the repository root:
 
 ```bash
 cd final_submission
@@ -19,157 +63,45 @@ python -m pip install -r requirements.txt
 python run_reproduction.py --mode verify
 ```
 
-Successful verification ends with:
+A successful check ends with:
 
 ```text
 Overall submission validation: PASS
 ```
 
-For full installation, review and rerun instructions, use the
-[`final_submission/README.md`](final_submission/README.md) five-step guide.
+For full installation, review order, expected outputs and model rerun commands,
+read the [`final_submission/README.md`](final_submission/README.md) instructor
+guide.
 
-## Repository status map
+## Final-submission contents
 
-| Status | Location | Meaning |
-|---|---|---|
-| **Authoritative submission** | `final_submission/` | Frozen inputs, canonical notebooks/scripts, final outputs, report figures and validation checks |
-| **Development workspace** | `notebooks/`, root `RQ2/`, root `RQ3/` | Working notebooks and intermediate analyses retained to show project development |
-| **Generated / historical outputs** | root `output/` | Earlier model outputs, diagnostics and extension results |
-| **Preliminary utilities** | `scripts/preliminary/` | Early data-processing utilities; not the main submission entry point |
-| **Compact root data audit** | root `data/` | Data dictionary and compact QC summary; complete frozen processed inputs are under `final_submission/data/` |
+### Shared evidence
 
-The report is still being edited and is intentionally not stored inside the
-final submission package.
+- `00_shared/00_report_figures.ipynb` collects the report figures and tables.
+- `00_shared/01_model_development_and_trial_log.ipynb` documents model
+  selection, unsuccessful trials and later exploratory work.
 
-## Complete repository structure
+### RQ1 — Point forecast accuracy
 
-The tree below shows every functional area without expanding hundreds of result
-CSVs, model parameter files and generated figures individually.
+Contains the two physical baselines, pooled VAR(1), Ridge, weighted KNN, FNN,
+Extra Trees, Random Forest, optimisation experiments and robustness diagnostics.
+Every canonical RQ1 notebook has a corresponding Python export.
 
-```text
-data3001-group-project/
-├── README.md                              # this repository overview
-├── .gitignore
-│
-├── final_submission/                     # ★ AUTHORITATIVE SUBMISSION
-│   ├── README.md                         # instructor five-step run guide
-│   ├── requirements.txt                  # Python dependencies
-│   ├── environment.yml                   # alternative Conda environment
-│   ├── run_reproduction.py               # single verification/rerun entry point
-│   ├── reproduction_pipeline.json
-│   │
-│   ├── 00_shared/
-│   │   ├── 00_report_figures.ipynb       # report figures and tables index
-│   │   ├── 01_model_development_and_trial_log.ipynb
-│   │   │                                  # model selection and trial-and-error record
-│   │   └── notebooks/
-│   │       ├── preliminary/              # retained early analysis notebooks
-│   │       └── presentation/             # presentation-support notebooks
-│   │
-│   ├── RQ1/                              # point forecasting and model selection
-│   │   ├── notebooks/
-│   │   │   ├── core/                     # two baselines + Ridge, FNN, VAR(1), KNN
-│   │   │   ├── extensions/               # trees, optimisation and later trials
-│   │   │   └── analysis/                 # comparisons, seed and drogue audits
-│   │   └── scripts/                      # Python exports matching all RQ1 notebooks
-│   │       ├── core/
-│   │       ├── extensions/
-│   │       └── analysis/
-│   │
-│   ├── RQ2/                              # regional predictability
-│   │   ├── README.md
-│   │   ├── notebooks/
-│   │   │   ├── core/                     # main regime and lead-time analyses
-│   │   │   ├── extensions/               # sensitivity and feedback extensions
-│   │   │   └── champion_models/          # selected-model regional analyses
-│   │   ├── scripts/                      # numbered reproducible RQ2 pipeline
-│   │   ├── data/                         # cached regime/environment inputs
-│   │   ├── results/                      # canonical regional result tables
-│   │   └── figures/                      # RQ2 diagnostic and report figures
-│   │
-│   ├── RQ3/                              # conformal uncertainty analysis
-│   │   ├── notebooks/
-│   │   │   ├── core/                     # global and regime-aware conformal analysis
-│   │   │   ├── analysis/                 # validation and multi-nominal checks
-│   │   │   └── champion_models/
-│   │   ├── scripts/                      # calibration, bootstrap and figure scripts
-│   │   ├── config/                       # frozen optimised-FNN parameters
-│   │   ├── optimised_fnn/output/         # ★ canonical final RQ3 outputs
-│   │   └── results/
-│   │       ├── report_tables/            # report-ready tables
-│   │       └── exploratory_original_pipeline/
-│   │                                          # labelled non-canonical earlier pipeline
-│   │
-│   ├── data/
-│   │   ├── README.md                     # provenance and reconstruction notes
-│   │   └── processed/                    # frozen leakage-safe shared inputs
-│   ├── data_dictionary/                  # variable dictionary
-│   ├── output/rq1/                       # RQ1 predictions, metrics and diagnostics
-│   ├── figures/report/                   # report-ready RQ1, RQ2 and RQ3 figures
-│   ├── docs/                             # execution order and reproducibility notes
-│   ├── scripts/                          # dataset build, checksum and validation tools
-│   ├── RESULTS_MANIFEST.csv              # headline claims → machine-readable sources
-│   ├── MANIFEST_SHA256.txt               # package integrity checksums
-│   ├── notebook_manifest.csv             # canonical notebook inventory
-│   └── validation_summary.json           # frozen PASS/FAIL validation summary
-│
-├── notebooks/                            # DEVELOPMENT WORKSPACE
-│   ├── README.md
-│   ├── 00_preliminary/                   # data checks and proposal-stage work
-│   ├── 01_rq1_forecasting/
-│   │   ├── en/                           # English RQ1 development notebooks
-│   │   ├── zh/                           # original bilingual development work
-│   │   └── analysis/                     # model comparison and drogue diagnostics
-│   ├── 02_rq2_regime_analysis/
-│   │   ├── core/
-│   │   ├── extensions/
-│   │   └── figure/
-│   ├── 03_rq3_conformal_prediction/
-│   └── 04_generalization/                # external zero-shot transfer experiments
-│
-├── RQ2/                                  # RQ2 WORKING DIRECTORY / HISTORY
-│   ├── README.md
-│   ├── 01_check_data.py ... 20_regional_lead_time_curves.py
-│   ├── champion_models/
-│   ├── data/
-│   ├── docs/
-│   └── figures/
-│
-├── RQ3/                                  # RQ3 WORKING DIRECTORY / HISTORY
-│   ├── champion_models/
-│   └── output/
-│
-├── data/                                 # ROOT-LEVEL COMPACT DATA AUDIT
-│   ├── dictionary/
-│   └── processed/qc_summary.csv
-│
-├── output/                               # DEVELOPMENT OUTPUT ARCHIVE
-│   ├── rq1/
-│   ├── rq3/
-│   ├── generalization/
-│   └── pdf/
-│
-├── scripts/preliminary/                  # preliminary utility scripts
-└── project_progress_overview.ipynb       # historical project overview
-```
+### RQ2 — Regional predictability
 
-## What the marker should review
+Contains the ocean-regime definitions, regional error analyses, normalised skill,
+lead-time comparisons and Core-only retraining experiments. Cached environmental
+inputs needed for the submitted results are included.
 
-| Review goal | Recommended file or command |
-|---|---|
-| Verify all frozen evidence | `cd final_submission && python run_reproduction.py --mode verify` |
-| Understand the complete workflow | `final_submission/README.md` |
-| See execution order | `final_submission/docs/EXECUTION_ORDER.md` |
-| Inspect model trial and selection history | `final_submission/00_shared/01_model_development_and_trial_log.ipynb` |
-| Find report figures and tables | `final_submission/00_shared/00_report_figures.ipynb` |
-| Trace a numerical claim to its source | `final_submission/RESULTS_MANIFEST.csv` |
-| Review RQ1 | `final_submission/RQ1/notebooks/` |
-| Review RQ2 | `final_submission/RQ2/notebooks/` and `final_submission/RQ2/results/` |
-| Review RQ3 | `final_submission/RQ3/notebooks/` and `final_submission/RQ3/optimised_fnn/output/` |
+### RQ3 — Forecast uncertainty
 
-## Research design
+Contains global and regime-aware conformal calibration, coverage validation,
+clustered bootstrap comparisons and report-ready uncertainty tables and figures.
+The canonical outputs are under `RQ3/optimised_fnn/output/`.
 
-| Item | Frozen project definition |
+## Frozen project design
+
+| Item | Definition |
 |---|---|
 | Study region | 125–135°E, 25–35°N |
 | Data period | 1994–2022 |
@@ -180,17 +112,17 @@ data3001-group-project/
 | Dataset | 562,944 observations; 5,117 forecast cases |
 | Split | 3,591 training; 769 calibration; 757 test cases |
 
-Complete drifter IDs stay in one partition, preventing the same physical drifter
-from appearing in training and held-out evaluation.
+Complete drifter IDs remain in one partition, preventing the same physical
+drifter from appearing in model fitting and held-out evaluation.
 
 ## Research questions
 
-- **RQ1 — Point accuracy:** How does separation error grow over 72 hours, and
-  which learned models improve on velocity persistence and spatial mean flow?
-- **RQ2 — Regional predictability:** How does forecast performance differ among
-  the Shelf, Kuroshio Core, Transition and Other Offshore regimes?
-- **RQ3 — Forecast uncertainty:** Can global and regime-aware conformal regions
-  achieve reliable empirical coverage without becoming operationally excessive?
+- **RQ1:** How does trajectory separation error grow over 72 hours, and which
+  learned models improve on velocity persistence and spatial mean flow?
+- **RQ2:** How does forecast performance differ among the Shelf, Kuroshio Core,
+  Transition and Other Offshore regimes?
+- **RQ3:** Can global and regime-aware conformal regions achieve reliable
+  empirical coverage without becoming operationally excessive?
 
 ## Frozen headline results
 
@@ -206,9 +138,8 @@ from appearing in training and held-out evaluation.
 | RQ3 Kuroshio Core global / Mondrian coverage | 80.58% / 89.93% |
 
 The selected FNN has the lowest numerical frozen RQ1 RMSE, while Random Forest
-is statistically competitive. Later tuning and diagnostic work is retained in
-the submission but explicitly labelled exploratory where held-out information
-had already been inspected.
+is statistically competitive. Later experiments remain visible in the trial log
+but are labelled exploratory when held-out information had already been viewed.
 
 ## Data source
 
@@ -219,26 +150,25 @@ quality-controlled dataset:
 - [NOAA NCEI dataset record](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.nodc%3AAOML-GDP-1hr)
 - Dataset DOI: [10.25921/x46c-3620](https://doi.org/10.25921/x46c-3620)
 
-Large raw upstream archives are not duplicated. The processed inputs necessary
+Large upstream raw archives are not duplicated. The processed inputs required
 to verify and rerun the submitted analyses are included under
-`final_submission/data/processed/`, with provenance notes in
-`final_submission/data/README.md`.
+`final_submission/data/processed/`.
 
-## Reproducibility principles
+## Reproducibility safeguards
 
 - Training, calibration and test drifters are disjoint.
 - Normalisation, model selection and mean-flow estimation use training data only.
 - Calibration cases are reserved for RQ3 conformal calibration.
-- Every method uses identical held-out forecast cases for paired comparison.
+- All models use identical held-out cases for paired comparison.
 - Drifter-clustered resampling preserves within-drifter dependence.
 - Confirmatory frozen results are separated from later exploratory development.
 - SHA256 checksums identify missing or changed submission files.
 
 ## Responsible interpretation
 
-The results are retrospective evaluations on historical drifter data. They do
-not constitute an operational search-and-rescue system. Operational use would
-require real-time forcing, prospective validation and additional safety review.
+These are retrospective results on historical drifter data, not an operational
+search-and-rescue system. Operational use would require real-time forcing,
+prospective validation and additional safety review.
 
 ## Reference
 

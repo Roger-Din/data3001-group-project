@@ -1,0 +1,2 @@
+global_rmse_km,regional_rmse_km,global_minus_regional_km,reduction_pct,ci_low_km,ci_high_km,n_cases,n_drifters,ensemble_seeds
+85.86172629656758,82.12415134391101,3.7375749526565727,4.353016313400149,0.5969288278080722,6.850405036248776,139,45,2026;2037;2048

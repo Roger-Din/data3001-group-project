@@ -1,0 +1,43 @@
+check,passed,detail
+Unique case IDs,True,
+Origin/meta order and case IDs match,True,
+Expected data dimensions,True,"5117 cases; errors (5117, 72)"
+Finite prediction errors,True,
+Nonnegative prediction errors,True,
+Calibration case count,True,769
+Test case count,True,757
+Calibration/test case rows disjoint,True,
+Calibration/test drifters disjoint,True,66 cal; 71 test
+Training/calibration/test drifters disjoint,True,
+Correct partition indices,True,
+Four complete regime labels (calibration/test),True,evaluated=1526; training_unclassified=5
+RQ1 saved CSV has required columns,True,"['forecast_case_id', 'integrated_trajectory_error_km_h', 'final_72h_error_km', 'mean_trajectory_error_km']"
+RQ1 saved test IDs unique,True,
+RQ1 and RQ3 test case ID sets identical,True,"{'both': 757, 'left_only': 0, 'right_only': 0}"
+RQ1 vs RQ3 per-case error tolerance < 1e-8 km,True,max absolute difference = 1.421e-14 km
+Expected regime/method comparison rows,True,
+Global 72h conformal radius matches original,True,105.196037 km
+Radius and sample counts: Kuroshio Core / Global case CP,True,
+Case coverage: Kuroshio Core / Global case CP,True,
+Radius and sample counts: Kuroshio Core / Mondrian case CP,True,
+Case coverage: Kuroshio Core / Mondrian case CP,True,
+Radius and sample counts: Kuroshio Core / Regime drifter-max CP,True,
+Case coverage: Kuroshio Core / Regime drifter-max CP,True,
+Radius and sample counts: Other Offshore / Global case CP,True,
+Case coverage: Other Offshore / Global case CP,True,
+Radius and sample counts: Other Offshore / Mondrian case CP,True,
+Case coverage: Other Offshore / Mondrian case CP,True,
+Radius and sample counts: Other Offshore / Regime drifter-max CP,True,
+Case coverage: Other Offshore / Regime drifter-max CP,True,
+Radius and sample counts: Shelf / Global case CP,True,
+Case coverage: Shelf / Global case CP,True,
+Radius and sample counts: Shelf / Mondrian case CP,True,
+Case coverage: Shelf / Mondrian case CP,True,
+Radius and sample counts: Shelf / Regime drifter-max CP,True,
+Case coverage: Shelf / Regime drifter-max CP,True,
+Radius and sample counts: Transition / Global case CP,True,
+Case coverage: Transition / Global case CP,True,
+Radius and sample counts: Transition / Mondrian case CP,True,
+Case coverage: Transition / Mondrian case CP,True,
+Radius and sample counts: Transition / Regime drifter-max CP,True,
+Case coverage: Transition / Regime drifter-max CP,True,

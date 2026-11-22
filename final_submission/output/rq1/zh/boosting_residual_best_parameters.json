@@ -1,0 +1,11 @@
+{
+  "baseline": "persistence",
+  "pca_components": 12,
+  "name": "small_regularised",
+  "learning_rate": 0.05,
+  "max_iter": 140,
+  "max_leaf_nodes": 15,
+  "min_samples_leaf": 25,
+  "l2_regularization": 2.0,
+  "selection": "balanced rank of CV RMSE, median, ITE and worst-10% RMSE"
+}

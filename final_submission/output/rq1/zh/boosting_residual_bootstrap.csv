@@ -1,0 +1,3 @@
+contrast,point_difference_km,ci_2.5_km,ci_97.5_km
+Boosting residual - Optimised FNN RMSE,-0.9266532020399367,-2.531460359211965,0.5703287594786008
+Boosting residual - Optimised KNN RMSE,-2.940620983084223,-5.295053203910463,-0.7250753702656707
